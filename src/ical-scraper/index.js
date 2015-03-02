@@ -3,7 +3,7 @@
 /**
  * NOTE:
  * I am not happy with the xml parser implementation,
- * imho there should be an better implementation than xml2js.
+ * imho there should be a better implementation than xml2js.
  *
  * xml2js: makes ugly js objects
  * elementtree: makes beautiful objects, but was last updated a year ago and has outdated dependencies
