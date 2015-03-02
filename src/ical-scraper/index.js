@@ -157,7 +157,7 @@ caldavReceiver('changed_cal', 'PROPFIND', 0)
          *        unchanged: [ array with unchanged items]
          *      } }
          *
-         * There should only be an filled object if there is something to do (!)
+         * There should only be a filled object if there is something to do (!)
          *
          * NOTE: I think we need the 'unchanged' items to differ from items
          * we later want to delete.
@@ -165,7 +165,7 @@ caldavReceiver('changed_cal', 'PROPFIND', 0)
          **/
 
         // TODO: emit events or something else because we want delegate db actions to another handler
-        // for now I am happy with an console.log
+        // for now I am happy with console.log
         console.log(util.inspect(calResponse, {depth: null, colors: true}));
 
         mongoose.disconnect();
