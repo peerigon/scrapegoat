@@ -1,0 +1,28 @@
+{
+  "name": "ical-scraper",
+  "version": "0.0.1",
+  "description": "ical holiday scraper",
+  "main": "src/index.js",
+  "dependencies": {
+    "ical": "^0.3.1",
+    "lodash": "^3.3.0",
+    "moment": "^2.9.0",
+    "mongoose": "^3.8.23",
+    "request": "^2.53.0",
+    "when": "^3.7.2",
+    "xml2js": "^0.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peerigon/ical-scaper.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peerigon/ical-scaper/issues"
+  },
+  "homepage": "https://github.com/peerigon/ical-scaper"
+}
