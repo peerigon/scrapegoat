@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<d:propfind xmlns:d="DAV:" xmlns:cs="http://calendarserver.org/ns/">
+    <d:prop>
+        <d:displayname />
+        <cs:getctag />
+    </d:prop>
+</d:propfind>
