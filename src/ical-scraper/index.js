@@ -25,7 +25,8 @@ var mongoose = require('mongoose');
 var Calendar = require('./db').Calendar;
 var Event = require('./db').Event;
 var caldavReceiver = require('./receiver');
-var xmlParser = require('./lib/xmlParser');
+var getChangedCalendar = caldavReceiver.getChangedCalendar;
+var getChangedEvents = caldavReceiver.getChangedEvents;
 var util = require('util');
 
 var calendar = {}; // holds calendar object (request)
@@ -103,12 +104,11 @@ function checkEventAgainstDb(event) {
 }
 
 // start by fetching the calendar, looking for a modified ctag
-caldavReceiver('changed_cal', 'PROPFIND', 0)
-    .then(function (response) {
+getChangedCalendar()
+    .then(function (cal) {
 
-        calendar = xmlParser.parseCalendarMultistatus(response);
-        return getCalendarFromDb(calendar);
-
+        calendar = cal;
+        return getCalendarFromDb(cal)
     }).then(function (dbCalendar) {
 
         // what are we doing now? compare the calendar objects
@@ -133,16 +133,13 @@ caldavReceiver('changed_cal', 'PROPFIND', 0)
         calResponse.props.name = calendar_object.name;
 
         // receive events' ctags and filename.ics (used as id)
-        return caldavReceiver('changed', 'REPORT', 1);
+        return getChangedEvents();
 
-    }).then(function (response) {
+    }).then(function (events) {
 
-        if (response === null) return null;
-
-        var events = xmlParser.parseEventsMultistatus(response);
         return when.map(events, checkEventAgainstDb);
-
-    }).done(function () {
+    })
+    .done(function () {
 
         /**
          * at the end we want to get an calendar object which looks like
@@ -174,3 +171,5 @@ caldavReceiver('changed_cal', 'PROPFIND', 0)
         throw new Error(error);
     }
 );
+
+// TODO: prevent null response

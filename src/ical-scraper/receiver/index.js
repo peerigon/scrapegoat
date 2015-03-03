@@ -4,8 +4,22 @@ var path = require('path');
 var fs = require('fs');
 var when = require('when');
 var request = require('request');
+var xmlParser = require('../lib/xmlParser');
 
-function receive_caldav_data(xml, http_method, depth) {
+
+function getChangedCalendar() {
+    return receiveCalDavData('changed_cal', 'PROPFIND', 0).then(function (response) {
+        return xmlParser.parseCalendarMultistatus(response);
+    });
+}
+
+function getChangedEvents() {
+    return receiveCalDavData('changed', 'REPORT', 1).then(function (response) {
+        return xmlParser.parseEventsMultistatus(response);
+    });
+}
+
+function receiveCalDavData(xml, http_method, depth) {
 
     // TODO: write readFileSync async like
     // TODO: make it possible to parse for more than 1 calendar (lower priority)
@@ -42,4 +56,5 @@ function receive_caldav_data(xml, http_method, depth) {
     });
 }
 
-module.exports = receive_caldav_data;
+exports.getChangedCalendar = getChangedCalendar;
+exports.getChangedEvents = getChangedEvents;
