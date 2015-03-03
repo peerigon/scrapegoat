@@ -29,8 +29,6 @@ var getChangedCalendar = caldavReceiver.getChangedCalendar;
 var getChangedEvents = caldavReceiver.getChangedEvents;
 var util = require('util');
 
-var calendar = {}; // holds calendar object (request)
-
 var calResponse = {
     props: {
         href: null,
@@ -46,18 +44,13 @@ var calResponse = {
 
 function buildResponse(cal) {
 
-    return when.promise(function (resolve, reject) {
-
         calResponse.props.href = cal.href;
         calResponse.props.ctag = cal.ctag;
         calResponse.props.name = cal.name;
 
-        // TODO: reject?
-
-        resolve(getChangedEvents().then(function (events) {
+        return getChangedEvents().then(function (events) {
             return when.map(events, checkEventAgainstDb);
-        }));
-    });
+        });
 }
 
 /**
@@ -123,9 +116,9 @@ function checkEventAgainstDb(event) {
 getChangedCalendar()
     .then(function (cal) {
 
-        calendar = cal;
-        return getCalendarFromDb(cal)
-    }).then(function (dbCalendar) {
+        return [cal, getCalendarFromDb(cal)]
+
+    }).spread(function (calendar, dbCalendar) {
 
         // what are we doing now? compare the calendar objects
 
