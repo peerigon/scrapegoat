@@ -44,6 +44,22 @@ var calResponse = {
     }
 }; // object we want to work with
 
+function buildResponse(cal) {
+
+    return when.promise(function (resolve, reject) {
+
+        calResponse.props.href = cal.href;
+        calResponse.props.ctag = cal.ctag;
+        calResponse.props.name = cal.name;
+
+        // TODO: reject?
+
+        resolve(getChangedEvents().then(function (events) {
+            return when.map(events, checkEventAgainstDb);
+        }));
+    });
+}
+
 /**
  *
  * @param calendar
@@ -114,32 +130,14 @@ getChangedCalendar()
         // what are we doing now? compare the calendar objects
 
         // 1) if calendar is new or ctag has changed return calendar object
-        if (dbCalendar === null || calendar.ctag !== dbCalendar.ctag) return calendar;
+        if (dbCalendar === null || calendar.ctag !== dbCalendar.ctag) return buildResponse(calendar);
 
         // 2) do nothing, if ctags are equal
         if (dbCalendar.ctag === calendar.ctag) return null;
 
         throw ('Error: no condition applied - this is a logic error.')
 
-    }).then(function (calendar_object) {
-
-        // if value equals null, there is no action required
-        if (calendar_object === null) return null;
-
-        // otherwise receive events' etags
-        // and construct calendar response
-        calResponse.props.href = calendar_object.href;
-        calResponse.props.ctag = calendar_object.ctag;
-        calResponse.props.name = calendar_object.name;
-
-        // receive events' ctags and filename.ics (used as id)
-        return getChangedEvents();
-
-    }).then(function (events) {
-
-        return when.map(events, checkEventAgainstDb);
-    })
-    .done(function () {
+    }).done(function () {
 
         /**
          * at the end we want to get an calendar object which looks like
@@ -171,5 +169,3 @@ getChangedCalendar()
         throw new Error(error);
     }
 );
-
-// TODO: prevent null response
