@@ -22,9 +22,9 @@
 
 var when = require('when');
 var mongoose = require('mongoose');
-var Calendar = require('./db').Calendar;
-var Event = require('./db').Event;
-var caldavReceiver = require('./receiver');
+var Calendar = require('../lib/caldav/db').Calendar;
+var Event = require('../lib/caldav/db').Event;
+var caldavReceiver = require('../lib/caldav/receiver');
 var getChangedCalendar = caldavReceiver.getChangedCalendar;
 var getChangedEvents = caldavReceiver.getChangedEvents;
 var util = require('util');
