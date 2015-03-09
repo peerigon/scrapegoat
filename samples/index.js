@@ -10,8 +10,8 @@ var mongoose = require('mongoose');
 var Calendar = require('../lib/caldav/db').Calendar;
 var Event = require('../lib/caldav/db').Event;
 var caldavReceiver = require('../lib/caldav/receiver');
-var getChangedCalendar = caldavReceiver.getCalendarWithCtag;
-var getChangedEvents = caldavReceiver.getEventsWithEtag;
+var getChangedCalendar = caldavReceiver.getChangedCalendar;
+var getChangedEvents = caldavReceiver.getChangedEvents;
 var util = require('util');
 
 var calResponse = {
