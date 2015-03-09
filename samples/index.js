@@ -1,21 +1,6 @@
 "use strict";
 
 /**
- * NOTE:
- * I am not happy with the xml parser implementation,
- * imho there should be a better implementation than xml2js.
- *
- * xml2js: makes ugly js objects
- * elementtree: makes beautiful objects, but was last updated a year ago and has outdated dependencies
- *
- * xml-stream: looks good, need to test a bit. good for large xml files. last update Oct 5, 2014
- *
- * research related to xml parser modules in node.js was sobering
- * TODO: write own xml parser module for node.js and maintain it more than half a year :)
- *
- */
-
-/**
  *
  * @type {exports}
  */
@@ -25,8 +10,8 @@ var mongoose = require('mongoose');
 var Calendar = require('../lib/caldav/db').Calendar;
 var Event = require('../lib/caldav/db').Event;
 var caldavReceiver = require('../lib/caldav/receiver');
-var getChangedCalendar = caldavReceiver.getChangedCalendar;
-var getChangedEvents = caldavReceiver.getChangedEvents;
+var getChangedCalendar = caldavReceiver.getCalendarWithCtag;
+var getChangedEvents = caldavReceiver.getEventsWithEtag;
 var util = require('util');
 
 var calResponse = {
@@ -132,28 +117,7 @@ getChangedCalendar()
 
     }).done(function () {
 
-        /**
-         * at the end we want to get an calendar object which looks like
-         *  { props:
-         *      { href: 'calendar uri',
-         *        name: 'calendar displayname',
-         *        ctag: 'calendars ctag;
-         *      },
-         *    events:
-         *      { new: [ array with new event items ],
-         *        modified: [ array with modified items ],
-         *        unchanged: [ array with unchanged items]
-         *      } }
-         *
-         * There should only be a filled object if there is something to do (!)
-         *
-         * NOTE: I think we need the 'unchanged' items to differ from items
-         * we later want to delete.
-         *
-         **/
-
         // TODO: emit events or something else because we want delegate db actions to another handler
-        // for now I am happy with console.log
         console.log(util.inspect(calResponse, {depth: null, colors: true}));
 
         mongoose.disconnect();
