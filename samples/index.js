@@ -7,11 +7,9 @@
 
 var when = require('when');
 var mongoose = require('mongoose');
-var Calendar = require('../lib/caldav/db').Calendar;
-var Event = require('../lib/caldav/db').Event;
-var caldavReceiver = require('../lib/caldav/receiver');
-var getChangedCalendar = caldavReceiver.getChangedCalendar;
-var getChangedEvents = caldavReceiver.getChangedEvents;
+var Calendar = require('../lib/autoresponder/db').Calendar;
+var Event = require('../lib/autoresponder/db').Event;
+var Receiver = require('../lib/caldav/receiver');
 var util = require('util');
 
 var calResponse = {
@@ -27,13 +25,19 @@ var calResponse = {
     }
 }; // object we want to work with
 
+var rec = new Receiver({
+    user: 'test',
+    pass: 'arschkrampe',
+    uri: 'https://sepp.peerigon.com/cal.php/calendars/test/urlaub'
+});
+
 function buildResponse(cal) {
 
         calResponse.props.href = cal.href;
         calResponse.props.ctag = cal.ctag;
         calResponse.props.name = cal.name;
 
-        return getChangedEvents().then(function (events) {
+        return rec.getEventsWithEtag().then(function (events) {
             return when.map(events, checkEventAgainstDb);
         });
 }
@@ -98,7 +102,7 @@ function checkEventAgainstDb(event) {
 }
 
 // start by fetching the calendar, looking for a modified ctag
-getChangedCalendar()
+rec.getCalendarWithCtag()
     .then(function (cal) {
 
         return [cal, getCalendarFromDb(cal)]

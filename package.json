@@ -4,6 +4,7 @@
   "description": "ical holiday scraper",
   "main": "src/index.js",
   "dependencies": {
+    "ejs": "^2.3.1",
     "ical": "^0.3.1",
     "lodash": "^3.3.0",
     "moment": "^2.9.0",

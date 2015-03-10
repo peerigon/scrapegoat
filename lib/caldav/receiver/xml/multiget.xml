@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <c:calendar-multiget xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">
     <d:prop>
-        <d:getetag />
-        <c:calendar-data />
+        <d:getetag/>
+        <c:calendar-data/>
     </d:prop>
+    <% gets.forEach(function (get) {%>
+    <d:href><%= get.ics %></d:href>
+    <% }); %>
 </c:calendar-multiget>
