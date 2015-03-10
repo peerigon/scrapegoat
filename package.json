@@ -19,7 +19,7 @@
     "type": "git",
     "url": "https://github.com/peerigon/ical-scaper.git"
   },
-  "author": "",
+  "author": "Markus Dobmann <markus.dobmann@peerigon.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/peerigon/ical-scaper/issues"
