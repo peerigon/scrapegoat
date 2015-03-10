@@ -63,7 +63,7 @@ describe('xmlParser', function () {
 
     });
 
-    describe('xmlParser.parseEvents(xml', function() {
+    describe('xmlParser.parseEvents(xml)', function() {
 
         it('should return a non-empty array if xml contains events', function() {
 
