@@ -8,13 +8,12 @@
     "ical": "^0.3.1",
     "lodash": "^3.3.0",
     "moment": "^2.9.0",
-    "mongoose": "^3.8.23",
     "request": "^2.53.0",
     "when": "^3.7.2",
     "xml2js": "^0.4.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/.bin/mocha --recursive"
   },
   "repository": {
     "type": "git",
