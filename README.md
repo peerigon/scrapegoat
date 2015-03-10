@@ -1,37 +1,8 @@
 # ical-sc(r)aper
-ical holiday sc(r)apen
 
-If you want to work with this source, do the following steps:
+This library requests a calendar object and its events provided by a CalDav server.
 
-### sc(r)aper:
-
-1. `git clone https://github.com/peerigon/ical-scaper`
-2. `cd ical-scaper`
-3. `npm install`
-4. `vagrant up`
-5. `vagrant ssh`
-6. `cd /vagrant/src/ical-scraper` (consider the *r* in scraper)
-7. `node index.js`
-
-You should geht something like this:
-```javascript
-{ props: 
-   { href: '/cal.php/calendars/test/urlaub/',
-     name: 'Urlaub',
-     ctag: '184' },
-  events: 
-   { new: 
-      [ { ics: '037BAE0D-CB19-4B33-9376-52999F03AB0B.ics',
-          etag: 'f86a9c1699d1a1ceb6dc4955dd4acc5a"' },
-        { ics: 'A2425226-F445-4197-A35B-F872A1AC2AAF.ics',
-          etag: '97d8131ef37cc23d6a0aea37e2e02ca8"' } ],
-     modified: [],
-     unchanged: [] } }
-```
-
-### lib/caldav
-
-You need to specify a basic configuration.
+You have to specify a basic configuration.
 ```javascript
 config = {
    user: 'username',
@@ -40,8 +11,8 @@ config = {
 }
 ```
 
-#### fetching calendars' ctag `Receiver.getCalendarWithCtag()`
-The ctag is used to determine if anything in the calendar has changed. The advantage is, that we do not have to fetch the whole calendar but only the ctag (saves traffic).
+#### `Receiver.getCalendarWithCtag()`
+Fetches the calendar and its ctag. The ctag is used to determine if anything in the calendar has changed. The advantage is, that we do not have to fetch the whole calendar but only the ctag (saves traffic).
 You can do something like this:
 ```javascript
 var rec = new Receiver(config);
@@ -57,8 +28,8 @@ You will get:
 ```
 Now you can compare the ctag with your local storage.
 
-#### fetching events etag `Receiver.getEventsWithEtag()`
-The etag on events is the same as the ctag on calendars.
+#### `Receiver.getEventsWithEtag()`
+Fetches events and their etags. The etag on events is the same as the ctag on calendars.
 Do something like this:
 ```javascript
 var rec = new Receiver(config);
@@ -80,7 +51,7 @@ You will get:
 
 Again, compare your local storage with the fetched events' etags and sort them in categories like `new`, `modified`, `unchanged`.
 
-#### fetching events details `Receiver.getEvents(events)`
+#### `Receiver.getEvents(events)`
 Fetches event details from events specified in `events`. `events` has to look like the result you get with `Receiver.getEventsWithEtag()` otherwise you will get an error.
 Do something like this:
 ```javascript
