@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 var rewire = require('rewire');
 var request = require('request');
 
-var Receiver = rewire('../../../lib/caldav/receiver');
+var Receiver = rewire('../../../lib');
 
 var rec = new Receiver({
     user: 'test',
