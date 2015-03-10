@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var xmlParser = require('../../../lib/caldav/xml/xmlParser');
+var xmlParser = require('../../../lib/xml/parser');
 
 describe('xmlParser', function () {
 
