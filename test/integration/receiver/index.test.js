@@ -8,8 +8,8 @@ var Receiver = rewire('../../../lib');
 
 var rec = new Receiver({
     user: 'test',
-    pass: 'urlaub',
-    uri: 'https://sepp.peerigon.com/cal.php/calendars/test/urlaub'
+    pass: 'test',
+    uri: 'https://example.com/cal.php/calendars/user/calender_name'
 });
 
 describe('receiver', function () {
