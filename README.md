@@ -11,8 +11,10 @@ config = {
 }
 ```
 
-#### `Receiver.getCalendarWithCtag()`
-Fetches the calendar and its ctag. The ctag is used to determine if anything in the calendar has changed. The advantage is, that we do not have to fetch the whole calendar but only the ctag (saves traffic).
+#### Fetch a calendar and its ctag
+`Receiver.getCalenderWithCtag()`
+
+The ctag is used to determine if anything in the calendar has changed. The advantage is, that we do not have to fetch the whole calendar but only the ctag (saves traffic).
 You can do something like this:
 ```javascript
 var rec = new Receiver(config);
@@ -21,15 +23,17 @@ rec.getCalendarWithCtag().then(console.log);
 You will get:
 ```javascript
 {
-   href: '/cal.php/calendars/test/urlaub/',
-   name: 'Urlaub',
-   ctag: '192'
+   href: '/cal.php/calendars/test/holidays/',
+   name: 'Holiday',
+   ctag: '452'
 }
 ```
 Now you can compare the ctag with your local storage.
 
-#### `Receiver.getEventsWithEtag()`
-Fetches events and their etags. The etag on events is the same as the ctag on calendars.
+#### Fetch events with their etags
+`Receiver.getEventsWithEtag()`
+
+The etag on events is the same as the ctag on calendars.
 Do something like this:
 ```javascript
 var rec = new Receiver(config);
@@ -39,19 +43,21 @@ You will get:
 ```javascript
 [
    {
-      ics: '/cal.php/calendars/test/urlaub/66CCF514-A71B-47C1-93D7-AD5D3D169047.ics',
+      ics: '/cal.php/calendars/test/holidays/6151613161614616.ics',
       etag: 'fc46dd304e83f572688c68ab63816c8f"'
    },
    {
-      ics: '/cal.php/calendars/test/urlaub/BB2F60B8-4B91-4370-9829-C3633335DAFC.ics',
+      ics: '/cal.php/calendars/test/holidays/6816189165131651.ics',
       etag: '8d59671ba294af1de0e0b154a8ea64c2"'
    }
 ]
 ```
 
-Again, compare your local storage with the fetched events' etags and sort them in categories like `new`, `modified`, `unchanged`.
+Again, compare your local storage with the fetched events' etags and, for example, sort them in categories like `new`, `modified`, `unchanged`.
 
-#### `Receiver.getEvents(events)`
+#### Fetches event details
+`Receiver.getEvents(events)`
+
 Fetches event details from events specified in `events`. `events` has to look like the result you get with `Receiver.getEventsWithEtag()` otherwise you will get an error.
 Do something like this:
 ```javascript
@@ -63,10 +69,10 @@ And get something like this:
 ```javascript
 [
     {
-        ics: '/cal.php/calendars/test/urlaub/66CCF514-A71B-47C1-93D7-AD5D3D169047.ics',
+        ics: '/cal.php/calendars/test/holidays/1234564316516.ics',
         etag: 'fc46dd304e83f572688c68ab63816c8f"',
         data: {
-            title: 'Urlaub (MaJ)',
+            title: 'Holiday: John Doe',
             description: undefined,
             start: Wed Jul 08 2015 00:00:00 GMT+0200 (CEST),
             end: Sat Aug 08 2015 00:00:00 GMT+0200 (CEST),
