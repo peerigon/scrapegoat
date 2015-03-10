@@ -7,8 +7,8 @@
 
 var when = require('when');
 var mongoose = require('mongoose');
-var Calendar = require('../lib/caldav/db').Calendar;
-var Event = require('../lib/caldav/db').Event;
+var Calendar = require('../lib/autoresponder/db').Calendar;
+var Event = require('../lib/autoresponder/db').Event;
 var Receiver = require('../lib/caldav/receiver');
 var util = require('util');
 
