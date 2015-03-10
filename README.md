@@ -1,5 +1,7 @@
 # scrapegoat
 
+[![Build Status](https://travis-ci.org/peerigon/scrapegoat.svg?branch=develop)](https://travis-ci.org/peerigon/scrapegoat)
+
 This library requests a calendar object and its events provided by a CalDav server.
 
 You have to specify a basic configuration.
