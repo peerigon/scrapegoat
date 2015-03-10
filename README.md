@@ -1,4 +1,4 @@
-# ical-sc(r)aper
+# scrapegoat
 
 This library requests a calendar object and its events provided by a CalDav server.
 
