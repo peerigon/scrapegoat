@@ -1,8 +1,8 @@
 {
-  "name": "ical-scraper",
+  "name": "scrapegoat",
   "version": "0.0.1",
-  "description": "ical holiday scraper",
-  "main": "src/index.js",
+  "description": "fetches calendar/event objects from a CalDav server",
+  "main": "lib/index.js",
   "dependencies": {
     "ejs": "^2.3.1",
     "ical": "^0.3.1",
