@@ -74,6 +74,26 @@ describe('receiver', function () {
         after(function () {
             Receiver.__set__('request', request);
         })
-    })
+    });
+
+    describe('receiver.getAllEvents()', function () {
+
+        before(function () {
+            Receiver.__set__('request', function (options, callback) {
+                setImmediate(callback, new Error);
+            });
+        });
+
+        it('should throw an error if there\'s no connection', function () {
+
+            return rec.getAllEvents().catch(function (error) {
+                expect(error).to.be.instanceof(Error);
+            });
+        });
+
+        after(function () {
+            Receiver.__set__('request', request);
+        });
+    });
 
 });
