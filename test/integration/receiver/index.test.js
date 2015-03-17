@@ -66,7 +66,7 @@ describe('receiver', function () {
 
         it('should throw an error if there\'s no connection', function () {
 
-            return rec.getEvents([]).catch(function (error) {
+            return rec.getEvents([{ics: '123456789.ics', etag: '123456789'}]).catch(function (error) {
                 expect(error).to.be.instanceof(Error);
             });
         });
