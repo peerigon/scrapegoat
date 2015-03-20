@@ -25,7 +25,7 @@ describe('Scrapegoat', function () {
             });
         });
 
-        it.only('should throw an error if there\'s no connection', function () {
+        it('should throw an error if there\'s no connection', function () {
 
             return rec.getCtag().catch(function (error) {
                 expect(error).to.be.instanceof(Error);
