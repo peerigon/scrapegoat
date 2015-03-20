@@ -1,11 +1,12 @@
 <c:calendar-query xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">
     <d:prop>
-        <d:getetag />
-        <c:calendar-data />
+        <d:getetag/>
+        <c:calendar-data/>
     </d:prop>
     <c:filter>
         <c:comp-filter name="VCALENDAR">
-            <c:comp-filter name="VEVENT" />
+            <c:comp-filter name="VEVENT">
+            </c:comp-filter>
         </c:comp-filter>
     </c:filter>
 </c:calendar-query>
