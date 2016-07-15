@@ -20,13 +20,15 @@
   },
   "scripts": {
     "test": "mocha --recursive -R spec",
+    "posttest": "npm run lint",
+    "lint": "eslint lib test --fix",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/peerigon/scrapegoat.git"
   },
-  "author": "Markus Dobmann <markus.dobmann@peerigon.com>",
+  "author": "developers@peerigon.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/peerigon/scrapegoat/issues"
@@ -34,8 +36,12 @@
   "homepage": "https://github.com/peerigon/scrapegoat",
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^3.0.1",
+    "eslint-config-peerigon": "^6.0.0",
+    "eslint-plugin-jsdoc": "^2.3.1",
     "istanbul": "^0.4.4",
     "mocha": "^2.1.0",
+    "nock": "^8.0.0",
     "rewire": "^2.3.1"
   }
 }
