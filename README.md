@@ -5,32 +5,36 @@
 
 This library requests a calendar object and its events provided by a CalDav server.
 
-**Note: This project is under active development. Things may change.**
-
 Specify basic configuration:
+
 ```javascript
 config = {
   auth: {
    user: 'username',
    pass: 'password'
  },
- uri: 'http://example.com/cal.php/calendars/user/calendar_name'
+ // example using baikal as CalDAV server
+ uri: 'http://example.com/cal.php/calendars/<user name>/<calendar name>'
 }
 ```
 
 API
 ---
 
-### Scrapegoat.getCtag()
+### scrapegoat.getCtag()
 
-Fetches the ctag of a calendar. You can use the calendars ctag to see if anything in the calendar has changed.
+Fetches the ctag of a calendar. You can use the calendar's ctag to see if anything in the calendar has changed.
 
 ```javascript
-var rec = new Scrapegoat(config);
-rec.getCtag().then(console.log);
+const Scrapegoat = require('scrapegoat');
+
+const scrapegoat = new Scrapegoat(config);
+
+scrapegoat.getCtag().then(console.log);
 ```
 
 You'll get an object, which looks like this:
+
 ```javascript
 {
    href: '/calendars/test/holidays/',
@@ -39,15 +43,16 @@ You'll get an object, which looks like this:
 }
 ```
 
-### Scrapegoat.getEtags()
+### scrapegoat.getEtags()
 
 Fetches the etags of a all events. You can use the events etags to see if an event has changed.
 
 ```javascript
-rec.getEventsWithEtag().then(console.log);
+scrapegoat.getEtags().then(console.log);
 ```
 
 You'll get an array of objects, which looks like this:
+
 ```javascript
 [
    {
@@ -61,19 +66,21 @@ You'll get an array of objects, which looks like this:
 ]
 ```
 
-### Scrapegoat.getEvents(events)
+### scrapegoat.getEvents(events)
 
 Fetches events with its data/details. `events` has to be an array with objects, which contain an ics attribute. The ics attribute has to look like the ones we get with `getEtags()`.
 
 ```javascript
-var events = [
+const events = [
   { ics: '/calendars/user/calendar_name/12345.ics' }
   { ics: '/calendars/user/calendar_name/67890.ics' }
 ];
 
-rec.getEvents(events).then(console.log);
+scrapegoat.getEvents(events).then(console.log);
 ```
+
 Output should be something like this:
+
 ```javascript
 [
     {
@@ -89,17 +96,22 @@ Output should be something like this:
 ]
 ```
 
-### Scrapegoat.getAllEvents()
+### scrapegoat.getAllEvents()
 
 Fetches all events of the given calendar with data/details.
 
-### Scrapegoat.getEventsByTime(start, end)
+### scrapegoat.getEventsByTime(start, end)
 
-Fetch all events which occur between `start` and `end` (have to be valid *iCal Dates*). If you leave `start` and `end` out, you'll get all events from today.
+Fetch all events which occur between `start` and `end` (have to be valid [iCal Dates](http://www.kanzaki.com/docs/ical/dateTime.html)).
+If you leave `start` and `end` out, you'll get all upcoming events from today.
+
+Example using [moment.js](http://momentjs.com/) for date formatting:
 
 ```javascript
-var start = moment().startOf('month').format('YYYYMMDD[T]HHmmss[Z]');
-var end =  moment().endOf('month').format('YYYYMMDD[T]HHmmss[Z]');
+const moment = require('moment');
 
-return rec.getEventsByTime(start, end).then(console.log);
+const start = moment().startOf('month').format('YYYYMMDD[T]HHmmss[Z]');
+const end =  moment().endOf('month').format('YYYYMMDD[T]HHmmss[Z]');
+
+scrapegoat.getEventsByTime(start, end).then(console.log);
 ```
