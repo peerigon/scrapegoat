@@ -19,7 +19,7 @@
     "xml2js": "^0.4.5"
   },
   "scripts": {
-    "test": "mocha --recursive -R spec",
+    "test": "mocha --recursive -R spec --watch --reporter dot",
     "posttest": "npm run lint",
     "lint": "eslint lib test --fix",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive"
@@ -40,8 +40,7 @@
     "eslint-config-peerigon": "^6.0.0",
     "eslint-plugin-jsdoc": "^2.3.1",
     "istanbul": "^0.4.4",
-    "mocha": "^2.1.0",
-    "nock": "^8.0.0",
+    "mocha": "^3.1.2",
     "rewire": "^2.3.1"
   }
 }
