@@ -1,43 +1,42 @@
 "use strict";
 
-var expect = require("chai").expect;
-var createCalendar = require("../lib/index");
+const expect = require("chai").expect;
+const createCalendar = require("../lib/Calendar");
+const fixtures = require("./fixtures/index");
 
-var request = require("../lib/request");
-var CALENDAR_DOMAIN = "http://example.com";
-var CALENDAR_PATH = "/cal.php/calendars/user/calendar_name/";
+const CALENDAR_DOMAIN = "http://example.com";
+const CALENDAR_PATH = "/cal.php/calendars/user/calendar_name/";
 
-// var fixtures = require("./fixtures/index");
+describe("Calendar", () => {
 
-describe("Calendar", function () {
+    describe(".getCtag()", () => {
 
-    describe(".getCtag()", function () {
-
-        it.only("should return an object with information about the calendar", function (done) {
-            var baseConfig = {
+        it("should return an object with information about the calendar", () => {
+            const config = {
                 auth: {
                     user: "username",
                     pass: "password"
                 },
                 uri: CALENDAR_DOMAIN + CALENDAR_PATH
             };
-            // var method = "PROPFIND";
-            // var depth = 0;
-            // var xml = fixtures.requestBody;
-            var calendar = createCalendar(request)(baseConfig);
+            const response = fixtures.response;
 
-            return calendar.getCtag()
-            .then(function (info) {
-                console.log(info);
+            function request() {
+                return Promise.resolve(response);
+            }
+
+            const Calendar = createCalendar(request);
+            const calendar = new Calendar(config);
+
+            return calendar
+            .getCtag()
+            .then((info) => {
                 expect(info).to.have.property("href", CALENDAR_PATH);
                 expect(info).to.have.property("name", "Default calendar");
                 expect(info).to.have.property("ctag", "http://sabre.io/ns/sync/3");
             })
-            .then(function () {
-                done();
-            })
-            .catch(function (err) {
-                done(err);
+            .catch((err) => {
+                throw err;
             });
         });
 
