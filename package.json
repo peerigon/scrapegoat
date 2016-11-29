@@ -19,7 +19,8 @@
     "xml2js": "^0.4.5"
   },
   "scripts": {
-    "test": "mocha --recursive -R spec --watch --reporter dot",
+    "test": "mocha --recursive -R spec --reporter dot",
+    "test-watch": "npm test -- --watch",
     "posttest": "npm run lint",
     "lint": "eslint lib test --fix",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive"
