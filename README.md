@@ -37,7 +37,7 @@ You'll get an object, which looks like this:
 
 ```javascript
 {
-   href: '/calendars/test/holidays/',
+   href: '/cal.php/calendars/test/holidays/',
    name: 'Holiday',
    ctag: '452'
 }
@@ -56,11 +56,11 @@ You'll get an array of objects, which looks like this:
 ```javascript
 [
    {
-      ics: '/calendars/test/holidays/6151613161614616.ics',
+      ics: '/cal.php/calendars/test/holidays/6151613161614616.ics',
       etag: 'fc46dd304e83f572688c68ab63816c8f'
    },
    {
-      ics: '/calendars/test/holidays/6816189165131651.ics',
+      ics: '/cal.php/calendars/test/holidays/6816189165131651.ics',
       etag: '8d59671ba294af1de0e0b154a8ea64c2'
    }
 ]
@@ -72,8 +72,8 @@ Fetches events with its data/details. `events` has to be an array with objects, 
 
 ```javascript
 const events = [
-  { ics: '/calendars/user/calendar_name/12345.ics' }
-  { ics: '/calendars/user/calendar_name/67890.ics' }
+  { ics: '/cal.php/calendars/user/calendar_name/12345.ics' }
+  { ics: '/cal.php/calendars/user/calendar_name/67890.ics' }
 ];
 
 scrapegoat.getEvents(events).then(console.log);
@@ -84,14 +84,19 @@ Output should be something like this:
 ```javascript
 [
     {
-        ics: '/calendars/test/holidays/1234564316516.ics',
+        ics: '/cal.php/calendars/test/holidays/1234564316516.ics',
         etag: 'fc46dd304e83f572688c68ab63816c8f"',
         data: {
             title: 'Holiday: John Doe',
+            url: null,
+            uid: 'holiday-john-doe',
+            location: null,
+            geo: null,
+            description: null,
             start: Wed Jul 08 2015 00:00:00 GMT+0200 (CEST),
             end: Sat Aug 08 2015 00:00:00 GMT+0200 (CEST),
             createdAt: Wed Mar 04 2015 18:09:02 GMT+0100 (CET)
-        } 
+        }
     }
 ]
 ```
