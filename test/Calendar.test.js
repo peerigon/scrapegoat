@@ -1,6 +1,7 @@
 "use strict";
 
 const expect = require("chai").expect;
+const sinon = require("sinon");
 const createCalendar = require("../lib/Calendar");
 const fixtures = require("./fixtures/index");
 
@@ -98,9 +99,8 @@ describe("Calendar", () => {
             expect(() => calendar.getEvents([])).to.throw(TypeError);
         });
 
-        it.skip("should call request with given config as first argument", () => {
-            const response = fixtures.getEventsResponse;
-            // const request = Promise.resolve(response);
+        it("should call request with given config as first argument", () => {
+            const request = sinon.spy();
             const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
             const events = [
@@ -109,17 +109,15 @@ describe("Calendar", () => {
                 { ics: "/calendars/user/calendar_name/importantevent.ics" }
             ];
 
-            return calendar
-            .getEvents(events)
-            .then((response) => {
-                // expect(requestCalled).to.be.true;
-            })
-            .catch((err) => {
-                throw err;
-            });
+            calendar.getEvents(events);
+
+            expect(request.callCount).to.equal(1);
+            expect(request.firstCall.args[0]).to.equal(config);
+            expect(request.firstCall.args[1]).to.equal("REPORT");
+            expect(request.firstCall.args[2]).to.equal(1);
         });
 
-        it("should return an array of object with the passed events", () => {
+        it("should return an array of objects with the passed events", () => {
             const response = fixtures.getEventsResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -135,6 +133,74 @@ describe("Calendar", () => {
             .then((response) => {
                 expect(response).to.be.an("array");
                 expect(response).to.have.lengthOf(3);
+                expect(response[0]).to.have.property("ics");
+                expect(response[0]).to.have.property("etag");
+                expect(response[0]).to.have.property("data");
+            })
+            .catch((err) => {
+                throw err;
+            });
+        });
+
+    });
+
+    describe(".getAllEvents()", () => {
+
+        it("should return an array of objects with all events in the calendar", () => {
+            const response = fixtures.getAllEventsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
+            const calendar = new Calendar(config);
+
+            return calendar
+            .getAllEvents()
+            .then((response) => {
+                expect(response).to.be.an("array");
+                expect(response).to.have.lengthOf(3);
+                expect(response[0]).to.have.property("ics");
+                expect(response[0]).to.have.property("etag");
+                expect(response[0]).to.have.property("data");
+            })
+            .catch((err) => {
+                throw err;
+            });
+        });
+
+    });
+
+    describe(".getEventsByTime()", () => {
+
+        it("should return an array of objects with all events that occur between start and end dates", () => {
+            const response = fixtures.getEventsByTimeResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
+            const calendar = new Calendar(config);
+
+            return calendar
+            .getEventsByTime("20140101T000000Z", "20151231T235959Z")
+            .then((response) => {
+                expect(response).to.be.an("array");
+                expect(response).to.have.lengthOf(2);
+                expect(response[0]).to.have.property("ics");
+                expect(response[0]).to.have.property("etag");
+                expect(response[0]).to.have.property("data");
+            })
+            .catch((err) => {
+                throw err;
+            });
+        });
+
+        it("should return an array of objects with all upcoming events from today if start and end are left out", () => {
+            const response = fixtures.getFutureEventsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
+            const calendar = new Calendar(config);
+
+            return calendar
+            .getEventsByTime()
+            .then((response) => {
+                expect(response).to.be.an("array");
+                expect(response).to.have.lengthOf(1);
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
                 expect(response[0]).to.have.property("data");
