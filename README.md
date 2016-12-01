@@ -109,6 +109,7 @@ Fetches all events of the given calendar with data/details.
 
 Fetch all events which occur between `start` and `end` (have to be valid [iCal Dates](http://www.kanzaki.com/docs/ical/dateTime.html)).
 If you leave `start` and `end` out, you'll get all upcoming events from today.
+Passing only one date as a parameter returns all upcoming events from that date.
 
 Example using [moment.js](http://momentjs.com/) for date formatting:
 
