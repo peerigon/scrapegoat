@@ -17,23 +17,19 @@ const config = {
 describe("Calendar", () => {
 
     it("should throw if config object is not passed", () => {
-        const Calendar = createCalendar(() => {
-            return Promise.resolve(fixtures.response);
-        });
+        const response = fixtures.getCtagResponse;
+        const request = Promise.resolve(response);
+        const Calendar = createCalendar(() => request);
 
-        function calendar() {
-            return new Calendar();
-        }
-
-        expect(calendar).to.throw(Error, /Missing config object/);
+        expect(() => new Calendar()).to.throw(Error, /Missing config object/);
     });
 
     describe(".getCtag()", () => {
 
         it("should return an object with information about the calendar", () => {
-            const Calendar = createCalendar(() => {
-                return Promise.resolve(fixtures.getCtagResponse);
-            });
+            const response = fixtures.getCtagResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
 
             return calendar
@@ -53,15 +49,15 @@ describe("Calendar", () => {
     describe(".getEtags()", () => {
 
         it("should return an array of object with etags of all events", () => {
-            const Calendar = createCalendar(() => {
-                return Promise.resolve(fixtures.getEtagsResponse);
-            });
+            const response = fixtures.getEtagsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
 
             return calendar
             .getEtags()
             .then((response) => {
-                expect(response).to.be.instanceof(Array);
+                expect(response).to.be.an("array");
                 expect(response).to.have.lengthOf(3);
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
@@ -75,67 +71,37 @@ describe("Calendar", () => {
 
     describe(".getEvents()", () => {
 
-        it("should throw if param is not provided", () => {
-            const Calendar = createCalendar(() => {
-                return Promise.resolve(fixtures.getEventsResponse);
-            });
+        it("should throw if events param is not provided", () => {
+            const response = fixtures.getEventsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
 
-            function getEvents() {
-                return calendar.getEvents();
-            }
-
-            expect(getEvents).to.throw(TypeError);
+            expect(() => calendar.getEvents()).to.throw(TypeError);
         });
 
         it("should throw if events param is not an array", () => {
-            const Calendar = createCalendar(() => {
-                return Promise.resolve(fixtures.getEventsResponse);
-            });
+            const response = fixtures.getEventsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
 
-            function getEvents() {
-                return calendar.getEvents({});
-            }
-
-            expect(getEvents).to.throw(TypeError);
+            expect(() => calendar.getEvents({})).to.throw(TypeError);
         });
 
         it("should throw if events param is an empty array", () => {
-            const Calendar = createCalendar(() => {
-                return Promise.resolve(fixtures.getEventsResponse);
-            });
+            const response = fixtures.getEventsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
 
-            function getEvents() {
-                return calendar.getEvents([]);
-            }
-
-            expect(getEvents).to.throw(TypeError);
-        });
-
-        it("should not throw if events param is an array of objects", () => {
-            const Calendar = createCalendar(() => {
-                return Promise.resolve(fixtures.getEventsResponse);
-            });
-            const calendar = new Calendar(config);
-            const events = [
-                { ics: "/calendars/user/calendar_name/nodeschool-augsburg.ics" },
-                { ics: "/calendars/user/calendar_name/sampleevent.ics" },
-                { ics: "/calendars/user/calendar_name/importantevent.ics" }
-            ];
-
-            function getEvents() {
-                return calendar.getEvents(events);
-            }
-
-            expect(getEvents).to.not.throw(TypeError);
+            expect(() => calendar.getEvents([])).to.throw(TypeError);
         });
 
         it.skip("should call request with given config as first argument", () => {
-            const Calendar = createCalendar(() => {
-                return Promise.resolve(fixtures.getEventsResponse);
-            });
+            const response = fixtures.getEventsResponse;
+            // const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
             const events = [
                 { ics: "/calendars/user/calendar_name/nodeschool-augsburg.ics" },
@@ -154,9 +120,9 @@ describe("Calendar", () => {
         });
 
         it("should return an array of object with the passed events", () => {
-            const Calendar = createCalendar(() => {
-                return Promise.resolve(fixtures.getEventsResponse);
-            });
+            const response = fixtures.getEventsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
             const events = [
                 { ics: "/calendars/user/calendar_name/nodeschool-augsburg.ics" },
@@ -167,7 +133,7 @@ describe("Calendar", () => {
             return calendar
             .getEvents(events)
             .then((response) => {
-                expect(response).to.be.instanceof(Array);
+                expect(response).to.be.an("array");
                 expect(response).to.have.lengthOf(3);
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
