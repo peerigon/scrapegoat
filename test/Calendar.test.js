@@ -27,6 +27,24 @@ describe("Calendar", () => {
 
     describe(".getCtag()", () => {
 
+        it("should call request with the correct arguments in the correct order", () => {
+            const response = fixtures.getCtagResponse;
+            const request = sinon.stub();
+            const requestPromise = Promise.resolve(response);
+
+            request.returns(requestPromise);
+
+            const Calendar = createCalendar(request);
+            const calendar = new Calendar(config);
+
+            calendar.getCtag();
+
+            expect(request.callCount).to.equal(1);
+            expect(request.firstCall.args[0]).to.equal(config);
+            expect(request.firstCall.args[1]).to.equal("PROPFIND");
+            expect(request.firstCall.args[2]).to.equal(0);
+        });
+
         it("should return an object with information about the calendar", () => {
             const response = fixtures.getCtagResponse;
             const request = Promise.resolve(response);
@@ -45,6 +63,24 @@ describe("Calendar", () => {
     });
 
     describe(".getEtags()", () => {
+
+        it("should call request with the correct arguments in the correct order", () => {
+            const response = fixtures.getEtagsResponse;
+            const request = sinon.stub();
+            const requestPromise = Promise.resolve(response);
+
+            request.returns(requestPromise);
+
+            const Calendar = createCalendar(request);
+            const calendar = new Calendar(config);
+
+            calendar.getEtags();
+
+            expect(request.callCount).to.equal(1);
+            expect(request.firstCall.args[0]).to.equal(config);
+            expect(request.firstCall.args[1]).to.equal("REPORT");
+            expect(request.firstCall.args[2]).to.equal(1);
+        });
 
         it("should return an array of object with etags of all events", () => {
             const response = fixtures.getEtagsResponse;
@@ -93,9 +129,14 @@ describe("Calendar", () => {
             expect(() => calendar.getEvents([])).to.throw(TypeError);
         });
 
-        it("should call request with given config as first argument", () => {
-            const request = sinon.spy();
-            const Calendar = createCalendar(() => request);
+        it("should call request with the correct arguments in the correct order", () => {
+            const response = fixtures.getEventsResponse;
+            const request = sinon.stub();
+            const requestPromise = Promise.resolve(response);
+
+            request.returns(requestPromise);
+
+            const Calendar = createCalendar(request);
             const calendar = new Calendar(config);
             const events = [
                 { ics: "/calendars/user/calendar_name/nodeschool-augsburg.ics" },
@@ -137,6 +178,24 @@ describe("Calendar", () => {
 
     describe(".getAllEvents()", () => {
 
+        it("should call request with the correct arguments in the correct order", () => {
+            const response = fixtures.getAllEventsResponse;
+            const request = sinon.stub();
+            const requestPromise = Promise.resolve(response);
+
+            request.returns(requestPromise);
+
+            const Calendar = createCalendar(request);
+            const calendar = new Calendar(config);
+
+            calendar.getAllEvents();
+
+            expect(request.callCount).to.equal(1);
+            expect(request.firstCall.args[0]).to.equal(config);
+            expect(request.firstCall.args[1]).to.equal("REPORT");
+            expect(request.firstCall.args[2]).to.equal(1);
+        });
+
         it("should return an array of objects with all events in the calendar", () => {
             const response = fixtures.getAllEventsResponse;
             const request = Promise.resolve(response);
@@ -157,6 +216,24 @@ describe("Calendar", () => {
     });
 
     describe(".getEventsByTime()", () => {
+
+        it("should call request with the correct arguments in the correct order", () => {
+            const response = fixtures.getEventsByTimeResponse;
+            const request = sinon.stub();
+            const requestPromise = Promise.resolve(response);
+
+            request.returns(requestPromise);
+
+            const Calendar = createCalendar(request);
+            const calendar = new Calendar(config);
+
+            calendar.getEventsByTime("20140101T000000Z", "20151231T235959Z");
+
+            expect(request.callCount).to.equal(1);
+            expect(request.firstCall.args[0]).to.equal(config);
+            expect(request.firstCall.args[1]).to.equal("REPORT");
+            expect(request.firstCall.args[2]).to.equal(1);
+        });
 
         it("should return an array of objects with all events that occur between start and end dates", () => {
             const response = fixtures.getEventsByTimeResponse;
