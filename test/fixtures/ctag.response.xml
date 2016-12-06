@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:cal="urn:ietf:params:xml:ns:caldav"
+               xmlns:cs="http://calendarserver.org/ns/" xmlns:card="urn:ietf:params:xml:ns:carddav">
+    <d:response>
+        <d:href>/cal.php/calendars/user/calendar_name/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:displayname>Default calendar</d:displayname>
+                <cs:getctag>http://sabre.io/ns/sync/3</cs:getctag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+</d:multistatus>

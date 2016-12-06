@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:cal="urn:ietf:
+params:xml:ns:caldav" xmlns:cs="http://calendarserver.org/ns/" xmlns:card="urn:ietf
+:params:xml:ns:carddav">
+    <d:response>
+        <d:href>/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getetag>&quot;8b0c91268a90e32fbd893142503f373f&quot;</d:getetag>
+                <cal:calendar-data>BEGIN:VCALENDAR
+                    BEGIN:VEVENT
+                    UID:test123
+                    SUMMARY:Test Event
+                    DTSTART:20140920T080000Z
+                    DTEND:20140920T170000Z
+                    END:VEVENT
+                    END:VCALENDAR
+                </cal:calendar-data>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/cal.php/calendars/user/calendar_name/sampleevent.ics</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getetag>&quot;a7c169d6faedab873e5c56692fbf075f&quot;</d:getetag>
+                <cal:calendar-data>BEGIN:VCALENDAR
+                    BEGIN:VEVENT
+                    UID:test123
+                    SUMMARY:Sample Event
+                    DTSTART:20140920T080000Z
+                    DTEND:20140920T170000Z
+                    END:VEVENT
+                    END:VCALENDAR
+                </cal:calendar-data>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/cal.php/calendars/user/calendar_name/importantevent.ics</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getetag>&quot;955a468c27a5ba0d6505e70b2bb488ee&quot;</d:getetag>
+                <cal:calendar-data>BEGIN:VCALENDAR
+                    BEGIN:VEVENT
+                    UID:important100
+                    SUMMARY:Important Event
+                    DTSTART:20170920T080000Z
+                    DTEND:20170920T170000Z
+                    END:VEVENT
+                    END:VCALENDAR
+                </cal:calendar-data>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+</d:multistatus>
