@@ -39,9 +39,6 @@ describe("Calendar", () => {
                 expect(response).to.have.property("href", CALENDAR_PATH);
                 expect(response).to.have.property("name", "Default calendar");
                 expect(response).to.have.property("ctag", "http://sabre.io/ns/sync/3");
-            })
-            .catch((err) => {
-                throw err;
             });
         });
 
@@ -62,9 +59,6 @@ describe("Calendar", () => {
                 expect(response).to.have.lengthOf(3);
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
-            })
-            .catch((err) => {
-                throw err;
             });
         });
 
@@ -136,9 +130,6 @@ describe("Calendar", () => {
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
                 expect(response[0]).to.have.property("data");
-            })
-            .catch((err) => {
-                throw err;
             });
         });
 
@@ -160,9 +151,6 @@ describe("Calendar", () => {
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
                 expect(response[0]).to.have.property("data");
-            })
-            .catch((err) => {
-                throw err;
             });
         });
 
@@ -184,9 +172,6 @@ describe("Calendar", () => {
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
                 expect(response[0]).to.have.property("data");
-            })
-            .catch((err) => {
-                throw err;
             });
         });
 
@@ -204,9 +189,6 @@ describe("Calendar", () => {
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
                 expect(response[0]).to.have.property("data");
-            })
-            .catch((err) => {
-                throw err;
             });
         });
 
