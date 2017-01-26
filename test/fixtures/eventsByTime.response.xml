@@ -1,40 +1,71 @@
 <?xml version="1.0"?>
 <d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:cal="urn:ietf:params:xml:ns:caldav"
                xmlns:cs="http://calendarserver.org/ns/" xmlns:card="urn:ietf:params:xml:ns:carddav">
-    <d:response>
-        <d:href>/cal.php/calendars/antosan/calendar_name/nodeschool-augsburg.ics</d:href>
-        <d:propstat>
-            <d:prop>
-                <cal:calendar-data>BEGIN:VCALENDAR
-                    BEGIN:VEVENT
-                    UID:test123
-                    SUMMARY:Test Event
-                    DTSTART:20140920T080000Z
-                    DTEND:20140920T170000Z
-                    END:VEVENT
-                    END:VCALENDAR
-                </cal:calendar-data>
-                <d:getetag>&quot;8b0c91268a90e32fbd893142503f373f&quot;</d:getetag>
-            </d:prop>
-            <d:status>HTTP/1.1 200 OK</d:status>
-        </d:propstat>
-    </d:response>
-    <d:response>
-        <d:href>/cal.php/calendars/user/calendar_name/sampleevent.ics</d:href>
-        <d:propstat>
-            <d:prop>
-                <cal:calendar-data>BEGIN:VCALENDAR
-                    BEGIN:VEVENT
-                    UID:test123
-                    SUMMARY:Sample Event
-                    DTSTART:20140920T080000Z
-                    DTEND:20140920T170000Z
-                    END:VEVENT
-                    END:VCALENDAR
-                </cal:calendar-data>
-                <d:getetag>&quot;a7c169d6faedab873e5c56692fbf075f&quot;</d:getetag>
-            </d:prop>
-            <d:status>HTTP/1.1 200 OK</d:status>
-        </d:propstat>
-    </d:response>
+<d:response>
+  <d:href>/cal.php/calendars/antosan/default/56ea42c0-e4af-4ac8-8d60-d95996c9ddc5.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN
+VERSION:2.0
+BEGIN:VEVENT
+CREATED:20170124T153304Z
+LAST-MODIFIED:20170124T153352Z
+DTSTAMP:20170124T153352Z
+UID:56ea42c0-e4af-4ac8-8d60-d95996c9ddc5
+SUMMARY:Two Day Event
+DTSTART;VALUE=DATE:20170216
+DTEND;VALUE=DATE:20170218
+TRANSP:TRANSPARENT
+LOCATION:Kissing\, Augsburg\, Germany
+END:VEVENT
+END:VCALENDAR
+</cal:calendar-data>
+    <d:getetag>&quot;a25c446b93d3719dbb855efcf6305192&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
+ <d:response>
+  <d:href>/cal.php/calendars/antosan/default/62bfbb39-4236-4b79-b92b-8dd8babccaa2.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN
+VERSION:2.0
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+CREATED:20170124T160325Z
+LAST-MODIFIED:20170125T081611Z
+DTSTAMP:20170125T081611Z
+UID:62bfbb39-4236-4b79-b92b-8dd8babccaa2
+SUMMARY:One day event
+DTSTART;TZID=Europe/Berlin:20170210T000000
+DTEND;TZID=Europe/Berlin:20170210T000000
+TRANSP:OPAQUE
+X-MOZ-GENERATION:1
+END:VEVENT
+END:VCALENDAR
+</cal:calendar-data>
+    <d:getetag>&quot;c2ddc36c9748517b918aa56e838e4e68&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
 </d:multistatus>

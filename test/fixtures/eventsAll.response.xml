@@ -3,57 +3,121 @@
 params:xml:ns:caldav" xmlns:cs="http://calendarserver.org/ns/" xmlns:card="urn:ietf
 :params:xml:ns:carddav">
     <d:response>
-        <d:href>/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics</d:href>
-        <d:propstat>
-            <d:prop>
-                <d:getetag>&quot;8b0c91268a90e32fbd893142503f373f&quot;</d:getetag>
-                <cal:calendar-data>BEGIN:VCALENDAR
-                    BEGIN:VEVENT
-                    UID:test123
-                    SUMMARY:Test Event
-                    DTSTART:20140920T080000Z
-                    DTEND:20140920T170000Z
-                    END:VEVENT
-                    END:VCALENDAR
-                </cal:calendar-data>
-            </d:prop>
-            <d:status>HTTP/1.1 200 OK</d:status>
-        </d:propstat>
-    </d:response>
-    <d:response>
-        <d:href>/cal.php/calendars/user/calendar_name/sampleevent.ics</d:href>
-        <d:propstat>
-            <d:prop>
-                <d:getetag>&quot;a7c169d6faedab873e5c56692fbf075f&quot;</d:getetag>
-                <cal:calendar-data>BEGIN:VCALENDAR
-                    BEGIN:VEVENT
-                    UID:test123
-                    SUMMARY:Sample Event
-                    DTSTART:20140920T080000Z
-                    DTEND:20140920T170000Z
-                    END:VEVENT
-                    END:VCALENDAR
-                </cal:calendar-data>
-            </d:prop>
-            <d:status>HTTP/1.1 200 OK</d:status>
-        </d:propstat>
-    </d:response>
-    <d:response>
-        <d:href>/cal.php/calendars/user/calendar_name/importantevent.ics</d:href>
-        <d:propstat>
-            <d:prop>
-                <d:getetag>&quot;955a468c27a5ba0d6505e70b2bb488ee&quot;</d:getetag>
-                <cal:calendar-data>BEGIN:VCALENDAR
-                    BEGIN:VEVENT
-                    UID:important100
-                    SUMMARY:Important Event
-                    DTSTART:20170920T080000Z
-                    DTEND:20170920T170000Z
-                    END:VEVENT
-                    END:VCALENDAR
-                </cal:calendar-data>
-            </d:prop>
-            <d:status>HTTP/1.1 200 OK</d:status>
-        </d:propstat>
-    </d:response>
+  <d:href>/cal.php/calendars/antosan/default/event4.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20170206
+DTEND;VALUE=DATE:20170207
+DTSTAMP:20170103T092648Z
+UID:mdbbhf63lsc4jb7jaku3drdk9c@google.com
+CREATED:20170103T092317Z
+DESCRIPTION:#Nodeschool
+LAST-MODIFIED:20170103T092317Z
+LOCATION:Hochschule Augsburg, Augsburg, Germany
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:NodeSchool Test Event
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR</cal:calendar-data>
+    <d:getetag>&quot;18b24476c6d78baf7c056fdab6a45263&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
+ <d:response>
+  <d:href>/cal.php/calendars/antosan/default/event5.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN
+VERSION:2.0
+BEGIN:VEVENT
+CREATED:20170118T143300Z
+LAST-MODIFIED:20170125T142648Z
+DTSTAMP:20170125T142648Z
+UID:lcghvo9rqntv7n18s72dbt7fds@google.com
+SUMMARY:Repeating Event on Wednesdays
+STATUS:CONFIRMED
+RRULE:FREQ=WEEKLY;COUNT=5;BYDAY=WE
+EXDATE;VALUE=DATE:20170222
+EXDATE;VALUE=DATE:20170208
+DTSTART;VALUE=DATE:20170201
+DTEND;VALUE=DATE:20170202
+DESCRIPTION:#Repeating
+LOCATION:Am Silbermannpark\, 86161 Augsburg\, Germany
+SEQUENCE:0
+TRANSP:TRANSPARENT
+X-MOZ-GENERATION:2
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20170118T143300Z
+LAST-MODIFIED:20170124T110510Z
+DTSTAMP:20170124T110510Z
+UID:lcghvo9rqntv7n18s72dbt7fds@google.com
+SUMMARY:Edited Repeating Event on Wednesdays
+STATUS:CONFIRMED
+RECURRENCE-ID;VALUE=DATE:20170215
+DTSTART;VALUE=DATE:20170215
+DTEND;VALUE=DATE:20170216
+DESCRIPTION:#Repeating
+LOCATION:Königsplatz\, Augsburg\, Germany
+SEQUENCE:0
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20170125T140635Z
+LAST-MODIFIED:20170125T142648Z
+DTSTAMP:20170125T142648Z
+UID:lcghvo9rqntv7n18s72dbt7fds@google.com
+SUMMARY:Repeating Event on Wednesdays Title Change
+STATUS:CONFIRMED
+RECURRENCE-ID;VALUE=DATE:20170301
+DTSTART;VALUE=DATE:20170301
+DTEND;VALUE=DATE:20170302
+TRANSP:TRANSPARENT
+DESCRIPTION:#Repeating
+LOCATION:Am Silbermannpark\, 86161 Augsburg\, Germany
+SEQUENCE:0
+X-MOZ-GENERATION:2
+END:VEVENT
+END:VCALENDAR
+</cal:calendar-data>
+    <d:getetag>&quot;049d0b4228f3c4aaf8ff097a4bebc166&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
+ <d:response>
+  <d:href>/cal.php/calendars/antosan/default/2035efca-ec65-4ba1-80fe-a84344e119d9.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN
+VERSION:2.0
+BEGIN:VEVENT
+CREATED:20170124T124538Z
+LAST-MODIFIED:20170126T134855Z
+DTSTAMP:20170126T134855Z
+UID:2035efca-ec65-4ba1-80fe-a84344e119d9
+SUMMARY:Normal Recurring Event 5 Mondays
+RRULE:FREQ=WEEKLY;UNTIL=20170221
+EXDATE;VALUE=DATE:20170220
+EXDATE;VALUE=DATE:20170213
+DTSTART;VALUE=DATE:20170109
+DTEND;VALUE=DATE:20170110
+TRANSP:TRANSPARENT
+LOCATION:Mitte\, Berlin\, Germany
+SEQUENCE:2
+X-MOZ-GENERATION:2
+END:VEVENT
+END:VCALENDAR
+</cal:calendar-data>
+    <d:getetag>&quot;97285fdb50bef237b9592babc0aa8380&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
 </d:multistatus>
