@@ -171,6 +171,16 @@ describe("Calendar", () => {
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
                 expect(response[0]).to.have.property("data");
+                expect(response[0]).to.have.deep.property("data.title");
+                expect(response[0]).to.have.deep.property("data.uid");
+                expect(response[0]).to.have.deep.property("data.location");
+                expect(response[0]).to.have.deep.property("data.description");
+                expect(response[0]).to.have.deep.property("data.start");
+                expect(response[0]).to.have.deep.property("data.end");
+                expect(response[0]).to.have.deep.property("data.duration");
+                expect(response[0]).to.not.have.deep.property("data.duration.wrappedJSObject");
+                expect(response[0]).to.have.deep.property("data.type");
+                expect(response[0]).to.have.deep.property("data.createdAt");
             });
         });
 
