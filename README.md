@@ -110,6 +110,7 @@ Fetches all events of the given calendar with data/details.
 Fetch all events which occur between `start` and `end` (have to be valid [iCal Dates](http://www.kanzaki.com/docs/ical/dateTime.html)).
 If you leave `start` and `end` out, you'll get all upcoming events from today.
 Passing only one date as a parameter returns all upcoming events from that date.
+The end-date must be larger that the start-date.
 
 Example using [moment.js](http://momentjs.com/) for date formatting:
 
@@ -118,6 +119,17 @@ const moment = require('moment');
 
 const start = moment().startOf('month').format('YYYYMMDD[T]HHmmss[Z]');
 const end =  moment().endOf('month').format('YYYYMMDD[T]HHmmss[Z]');
+
+scrapegoat.getEventsByTime(start, end).then(console.log);
+```
+
+The example below gets all events happening on a single day
+
+```javascript
+const moment = require('moment');
+
+const start = moment("20170216T0000").format("YYYYMMDD[T]HHmmss[Z]");
+const end = moment("20170216T2300").format("YYYYMMDD[T]HHmmss[Z]");
 
 scrapegoat.getEventsByTime(start, end).then(console.log);
 ```
