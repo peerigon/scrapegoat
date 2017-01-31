@@ -13,3 +13,6 @@
 - Added `duration` and `type` fields to the output of .getEvents(), .getAllEvents() and .getEventsByTime()
 - Removed `url` and `geo` fields from the output of .getEvents(), .getAllEvents() and .getEventsByTime() as most calendar clients do not allow users to provide these values
 - Update calendar tests
+
+# 0.2.1
+- Fix: Remove wrappedJSObject circular object from event duration object
