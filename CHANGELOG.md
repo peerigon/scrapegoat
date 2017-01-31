@@ -5,3 +5,11 @@
 - Fix: .getEventsByTime() now returns all upcoming events from today if you leave out start and end params
 - Added url, uid, location, geo and description fields to the output of .getEvents(), .getAllEvents() and .getEventsByTime()
 - Added tests for the Calendar
+
+# 0.2.0
+
+- Fix: Update the events parser to expand recurring events (Switched from using [ical](https://github.com/peterbraden/ical.js) to using [ical.js](https://github.com/mozilla-comm/ical.js)) - Fixes #12
+- Fix: Handle cases where user inputs an end-date smaller than start-date in .getEventsByTime()
+- Added `duration` and `type` fields to the output of .getEvents(), .getAllEvents() and .getEventsByTime()
+- Removed `url` and `geo` fields from the output of .getEvents(), .getAllEvents() and .getEventsByTime() as most calendar clients do not allow users to provide these values
+- Update calendar tests
