@@ -88,14 +88,21 @@ Output should be something like this:
         etag: 'fc46dd304e83f572688c68ab63816c8f"',
         data: {
             title: 'Holiday: John Doe',
-            url: null,
-            uid: 'holiday-john-doe',
-            location: null,
-            geo: null,
+            uid: '56ea42c0-e4af-4ac8-8d60-d95996c9ddc5',
+            location: 'Kissing, Augsburg, Germany',
             description: null,
-            start: Wed Jul 08 2015 00:00:00 GMT+0200 (CEST),
-            end: Sat Aug 08 2015 00:00:00 GMT+0200 (CEST),
-            createdAt: Wed Mar 04 2015 18:09:02 GMT+0100 (CET)
+            start: 2017-02-16T00:00:00.000Z,
+            end: 2017-02-18T00:00:00.000Z,
+            duration: {
+                weeks: 0,
+                days: 2,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+                isNegative: false
+            },
+            type: { recurring: false, edited: false },
+            createdAt: 2017-01-24T15:33:04.000Z
         }
     }
 ]
