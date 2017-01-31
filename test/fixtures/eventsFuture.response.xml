@@ -1,22 +1,28 @@
 <?xml version="1.0"?>
 <d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:cal="urn:ietf:params:xml:ns:caldav"
                xmlns:cs="http://calendarserver.org/ns/" xmlns:card="urn:ietf:params:xml:ns:carddav">
-    <d:response>
-        <d:href>/cal.php/calendars/user/calendar_name/importantevent.ics</d:href>
-        <d:propstat>
-            <d:prop>
-                <cal:calendar-data>BEGIN:VCALENDAR
-                    BEGIN:VEVENT
-                    UID:important100
-                    SUMMARY:Important Event
-                    DTSTART:20170920T080000Z
-                    DTEND:20170920T170000Z
-                    END:VEVENT
-                    END:VCALENDAR
-                </cal:calendar-data>
-                <d:getetag>&quot;955a468c27a5ba0d6505e70b2bb488ee&quot;</d:getetag>
-            </d:prop>
-            <d:status>HTTP/1.1 200 OK</d:status>
-        </d:propstat>
-    </d:response>
+ <d:response>
+  <d:href>/cal.php/calendars/antosan/default/c007469f-4429-4c3c-b2ea-ba16c6a413e0.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN
+VERSION:2.0
+BEGIN:VEVENT
+CREATED:20170125T084628Z
+LAST-MODIFIED:20170125T084645Z
+DTSTAMP:20170125T084645Z
+UID:c007469f-4429-4c3c-b2ea-ba16c6a413e0
+SUMMARY:All Day Event
+DTSTART;VALUE=DATE:20170224
+DTEND;VALUE=DATE:20170225
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
+</cal:calendar-data>
+    <d:getetag>&quot;321a62c654258477aafe535f4bbd0936&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
 </d:multistatus>

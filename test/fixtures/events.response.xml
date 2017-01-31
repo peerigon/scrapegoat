@@ -3,57 +3,82 @@
 params:xml:ns:caldav" xmlns:cs="http://calendarserver.org/ns/" xmlns:card="urn:ietf
 :params:xml:ns:carddav">
     <d:response>
-        <d:href>/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics</d:href>
-        <d:propstat>
-            <d:prop>
-                <d:getetag>&quot;8b0c91268a90e32fbd893142503f373f&quot;</d:getetag>
-                <cal:calendar-data>BEGIN:VCALENDAR
-                    BEGIN:VEVENT
-                    UID:test123
-                    SUMMARY:Test Event
-                    DTSTART:20140920T080000Z
-                    DTEND:20140920T170000Z
-                    END:VEVENT
-                    END:VCALENDAR
-                </cal:calendar-data>
-            </d:prop>
-            <d:status>HTTP/1.1 200 OK</d:status>
-        </d:propstat>
-    </d:response>
-    <d:response>
-        <d:href>/cal.php/calendars/user/calendar_name/sampleevent.ics</d:href>
-        <d:propstat>
-            <d:prop>
-                <d:getetag>&quot;a7c169d6faedab873e5c56692fbf075f&quot;</d:getetag>
-                <cal:calendar-data>BEGIN:VCALENDAR
-                    BEGIN:VEVENT
-                    UID:test123
-                    SUMMARY:Sample Event
-                    DTSTART:20140920T080000Z
-                    DTEND:20140920T170000Z
-                    END:VEVENT
-                    END:VCALENDAR
-                </cal:calendar-data>
-            </d:prop>
-            <d:status>HTTP/1.1 200 OK</d:status>
-        </d:propstat>
-    </d:response>
-    <d:response>
-        <d:href>/cal.php/calendars/user/calendar_name/importantevent.ics</d:href>
-        <d:propstat>
-            <d:prop>
-                <d:getetag>&quot;955a468c27a5ba0d6505e70b2bb488ee&quot;</d:getetag>
-                <cal:calendar-data>BEGIN:VCALENDAR
-                    BEGIN:VEVENT
-                    UID:important100
-                    SUMMARY:Important Event
-                    DTSTART:20170920T080000Z
-                    DTEND:20170920T170000Z
-                    END:VEVENT
-                    END:VCALENDAR
-                </cal:calendar-data>
-            </d:prop>
-            <d:status>HTTP/1.1 200 OK</d:status>
-        </d:propstat>
-    </d:response>
+  <d:href>/cal.php/calendars/antosan/default/event1.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+BEGIN:VEVENT
+DTSTART:20170120T170000Z
+DTEND:20170131T180000Z
+DTSTAMP:20170103T092648Z
+UID:a16se324oio249dm3ttuage8p8@google.com
+CREATED:20161222T165404Z
+DESCRIPTION:#MultipleDays
+LAST-MODIFIED:20170103T092618Z
+LOCATION:Technical University of Munich, Munich, Germany
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Event spanning multiple days
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR</cal:calendar-data>
+    <d:getetag>&quot;f139956a97818e0bfadd3397a168cf4c&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
+ <d:response>
+  <d:href>/cal.php/calendars/antosan/default/event2.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+BEGIN:VEVENT
+DTSTART:20170126T090000Z
+DTEND:20170126T100000Z
+DTSTAMP:20170103T092648Z
+UID:u6acp1beq9h1ubas93pu0u6efk@google.com
+CREATED:20170103T092543Z
+DESCRIPTION:#Feedback
+LAST-MODIFIED:20170103T092603Z
+LOCATION:Peerigon GmbH, Augsburg, Germany
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Feedback Meeting Test
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR</cal:calendar-data>
+    <d:getetag>&quot;3450d98f6bd8e36aec5fdfaca8f53aa1&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
+ <d:response>
+  <d:href>/cal.php/calendars/antosan/default/event3.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN
+VERSION:2.0
+BEGIN:VEVENT
+CREATED:20170103T092425Z
+LAST-MODIFIED:20170124T135151Z
+DTSTAMP:20170124T135151Z
+UID:c68aer4mu06fgmsf4plvuneb14@google.com
+SUMMARY:Monthly Brunch Test Event
+STATUS:CONFIRMED
+DTSTART;VALUE=DATE:20170209
+DTEND;VALUE=DATE:20170210
+DESCRIPTION:#Meeting
+LOCATION:Peerigon GmbH\, Augsburg\, Germany
+SEQUENCE:1
+TRANSP:TRANSPARENT
+X-MOZ-GENERATION:1
+END:VEVENT
+END:VCALENDAR
+</cal:calendar-data>
+    <d:getetag>&quot;79bcca31d1bda4e0f0bddd6e12f11a71&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
 </d:multistatus>

@@ -88,14 +88,21 @@ Output should be something like this:
         etag: 'fc46dd304e83f572688c68ab63816c8f"',
         data: {
             title: 'Holiday: John Doe',
-            url: null,
-            uid: 'holiday-john-doe',
-            location: null,
-            geo: null,
+            uid: '56ea42c0-e4af-4ac8-8d60-d95996c9ddc5',
+            location: 'Kissing, Augsburg, Germany',
             description: null,
-            start: Wed Jul 08 2015 00:00:00 GMT+0200 (CEST),
-            end: Sat Aug 08 2015 00:00:00 GMT+0200 (CEST),
-            createdAt: Wed Mar 04 2015 18:09:02 GMT+0100 (CET)
+            start: 2017-02-16T00:00:00.000Z,
+            end: 2017-02-18T00:00:00.000Z,
+            duration: {
+                weeks: 0,
+                days: 2,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+                isNegative: false
+            },
+            type: { recurring: false, edited: false },
+            createdAt: 2017-01-24T15:33:04.000Z
         }
     }
 ]
@@ -110,6 +117,7 @@ Fetches all events of the given calendar with data/details.
 Fetch all events which occur between `start` and `end` (have to be valid [iCal Dates](http://www.kanzaki.com/docs/ical/dateTime.html)).
 If you leave `start` and `end` out, you'll get all upcoming events from today.
 Passing only one date as a parameter returns all upcoming events from that date.
+The end-date must be larger that the start-date.
 
 Example using [moment.js](http://momentjs.com/) for date formatting:
 
@@ -118,6 +126,17 @@ const moment = require('moment');
 
 const start = moment().startOf('month').format('YYYYMMDD[T]HHmmss[Z]');
 const end =  moment().endOf('month').format('YYYYMMDD[T]HHmmss[Z]');
+
+scrapegoat.getEventsByTime(start, end).then(console.log);
+```
+
+The example below gets all events happening on a single day
+
+```javascript
+const moment = require('moment');
+
+const start = moment("20170216T0000").format("YYYYMMDD[T]HHmmss[Z]");
+const end = moment("20170216T2300").format("YYYYMMDD[T]HHmmss[Z]");
 
 scrapegoat.getEventsByTime(start, end).then(console.log);
 ```

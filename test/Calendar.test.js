@@ -139,9 +139,9 @@ describe("Calendar", () => {
             const Calendar = createCalendar(request);
             const calendar = new Calendar(config);
             const events = [
-                { ics: "/calendars/user/calendar_name/nodeschool-augsburg.ics" },
-                { ics: "/calendars/user/calendar_name/sampleevent.ics" },
-                { ics: "/calendars/user/calendar_name/importantevent.ics" }
+                { ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics" },
+                { ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics" },
+                { ics: "/cal.php/calendars/user/calendar_name/importantevent.ics" }
             ];
 
             calendar.getEvents(events);
@@ -158,9 +158,9 @@ describe("Calendar", () => {
             const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
             const events = [
-                { ics: "/calendars/user/calendar_name/nodeschool-augsburg.ics" },
-                { ics: "/calendars/user/calendar_name/sampleevent.ics" },
-                { ics: "/calendars/user/calendar_name/importantevent.ics" }
+                { ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics" },
+                { ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics" },
+                { ics: "/cal.php/calendars/user/calendar_name/importantevent.ics" }
             ];
 
             return calendar
@@ -206,7 +206,7 @@ describe("Calendar", () => {
             .getAllEvents()
             .then((response) => {
                 expect(response).to.be.an("array");
-                expect(response).to.have.lengthOf(3);
+                expect(response).to.have.lengthOf(9);
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
                 expect(response[0]).to.have.property("data");
