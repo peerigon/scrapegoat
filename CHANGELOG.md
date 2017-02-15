@@ -20,3 +20,6 @@
 # 0.2.2
 - Fix: Filter out recurring event occurrences from the past in `.getEventsByTime()`
 - Fix: CalDav saves the end date of all day events as the start of the next day. To fix this, we now subtract one second from the end date.
+
+# 0.2.3
+- Fix: Solve bug where currently ongoing non-recurring events were being filtered out by `.getEventsByTime()`
