@@ -17,5 +17,13 @@
 # 0.2.1
 - Fix: Remove wrappedJSObject circular object from event duration object
 
+# 0.2.2
+- Fix: Filter out recurring event occurrences from the past in `.getEventsByTime()`
+- Fix: CalDav saves the end date of all day events as the start of the next day. To fix this, we now subtract one second from the end date.
+
+# 0.2.3
+- Fix: Solve bug where currently ongoing non-recurring events were being filtered out by `.getEventsByTime()`
+
 # 0.3.0
 - Feature: An optional `timeout` parameter can be provided to the `config` object passed to `Scrapegoat` to indicate the number of milliseconds to wait for the server to send the response before aborting the request.
+

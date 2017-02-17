@@ -155,3 +155,7 @@ const end = moment("20170216T2300").format("YYYYMMDD[T]HHmmss[Z]");
 
 scrapegoat.getEventsByTime(start, end).then(console.log);
 ```
+
+## Sponsors
+
+[<img src="https://assets.peerigon.com/peerigon/logo/peerigon-logo-flat-spinat.png" width="150" />](https://peerigon.com)
