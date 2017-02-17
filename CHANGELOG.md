@@ -16,3 +16,6 @@
 
 # 0.2.1
 - Fix: Remove wrappedJSObject circular object from event duration object
+
+# 0.3.0
+- Feature: An optional `timeout` parameter can be provided to the `config` object passed to `Scrapegoat` to indicate the number of milliseconds to wait for the server to send the response before aborting the request.
