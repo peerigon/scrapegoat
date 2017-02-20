@@ -25,17 +25,6 @@ describe("Calendar", () => {
         expect(() => new Calendar()).to.throw(Error, /Missing config object/);
     });
 
-    it("should not throw if a timeout error occurs", () => {
-        const response = fixtures.getCtagResponse;
-        const request = Promise.resolve(response);
-
-        config.timeout = 1;
-
-        const Calendar = createCalendar(() => request);
-
-        expect(() => new Calendar(config)).to.not.throw(Error);
-    });
-
     describe(".getCtag()", () => {
 
         it("should call request with the correct arguments in the correct order", () => {
@@ -68,23 +57,6 @@ describe("Calendar", () => {
                 expect(response).to.have.property("href", CALENDAR_PATH);
                 expect(response).to.have.property("name", "Default calendar");
                 expect(response).to.have.property("ctag", "http://sabre.io/ns/sync/3");
-            });
-        });
-
-        it("should return an empty object if server timeout occurs", () => {
-            const response = fixtures.getErrorResponse;
-            const request = Promise.resolve(response);
-            const Calendar = createCalendar(() => request);
-
-            config.timeout = 1;
-
-            const calendar = new Calendar(config);
-
-            return calendar
-            .getCtag()
-            .then((response) => {
-                expect(response).to.be.an("object");
-                expect(response).to.be.empty;
             });
         });
 
@@ -123,23 +95,6 @@ describe("Calendar", () => {
                 expect(response).to.have.lengthOf(3);
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
-            });
-        });
-
-        it("should return an empty array if server timeout occurs", () => {
-            const response = fixtures.getErrorResponse;
-            const request = Promise.resolve(response);
-            const Calendar = createCalendar(() => request);
-
-            config.timeout = 1;
-
-            const calendar = new Calendar(config);
-
-            return calendar
-            .getEtags()
-            .then((response) => {
-                expect(response).to.be.an("array");
-                expect(response).to.be.empty;
             });
         });
 
@@ -229,28 +184,6 @@ describe("Calendar", () => {
             });
         });
 
-        it("should return an empty array if server timeout occurs", () => {
-            const response = fixtures.getErrorResponse;
-            const request = Promise.resolve(response);
-            const Calendar = createCalendar(() => request);
-
-            config.timeout = 1;
-
-            const calendar = new Calendar(config);
-            const events = [
-                { ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics" },
-                { ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics" },
-                { ics: "/cal.php/calendars/user/calendar_name/importantevent.ics" }
-            ];
-
-            return calendar
-            .getEvents(events)
-            .then((response) => {
-                expect(response).to.be.an("array");
-                expect(response).to.be.empty;
-            });
-        });
-
     });
 
     describe(".getAllEvents()", () => {
@@ -287,23 +220,6 @@ describe("Calendar", () => {
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
                 expect(response[0]).to.have.property("data");
-            });
-        });
-
-        it("should return an empty array if server timeout occurs", () => {
-            const response = fixtures.getErrorResponse;
-            const request = Promise.resolve(response);
-            const Calendar = createCalendar(() => request);
-
-            config.timeout = 1;
-
-            const calendar = new Calendar(config);
-
-            return calendar
-            .getAllEvents()
-            .then((response) => {
-                expect(response).to.be.an("array");
-                expect(response).to.be.empty;
             });
         });
 
@@ -360,23 +276,6 @@ describe("Calendar", () => {
                 expect(response[0]).to.have.property("ics");
                 expect(response[0]).to.have.property("etag");
                 expect(response[0]).to.have.property("data");
-            });
-        });
-
-        it("should return an empty array if server timeout occurs", () => {
-            const response = fixtures.getErrorResponse;
-            const request = Promise.resolve(response);
-            const Calendar = createCalendar(() => request);
-
-            config.timeout = 1;
-
-            const calendar = new Calendar(config);
-
-            return calendar
-            .getEventsByTime()
-            .then((response) => {
-                expect(response).to.be.an("array");
-                expect(response).to.be.empty;
             });
         });
 
