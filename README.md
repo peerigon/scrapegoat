@@ -18,6 +18,21 @@ config = {
 }
 ```
 
+The request will timeout if it gets no reponse from the CalDav server after 10 seconds.
+An optional `timeout` parameter can be provided to override this default by passing an integer containing the number of milliseconds to wait for the server to send the response before aborting the request.
+
+```javascript
+config = {
+    auth: {
+        user: 'username',
+        pass: 'password'
+    },
+    // example using baikal as CalDAV server
+    uri: 'http://example.com/cal.php/calendars/<user name>/<calendar name>',
+    timeout: 20000
+}
+```
+
 API
 ---
 
