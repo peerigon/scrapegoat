@@ -27,3 +27,18 @@
 # 0.3.0
 - Feature: An optional `timeout` parameter can be provided to the `config` object passed to `Scrapegoat` to indicate the number of milliseconds to wait for the server to send the response before aborting the request.
 
+# 0.4.0
+- fix(parser): convert dates to ISO-Strings
+
+    Return all dates (`start`, `end`, and `createdAt`) as ISO-Strings,
+    instead of Date objects to maintain consistency.
+
+    BREAKING CHANGE:
+
+    The dates were returned as a mix of ISO-Strings and Date Objects
+    in previous versions.
+
+    To migrate your project, confirm that you are handling the dates
+    received from scrapegoat correctly.
+- fix(parser): remove etag trailing double quote
+- docs(readme): update docs on README.md
