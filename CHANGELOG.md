@@ -27,3 +27,12 @@
 # 0.3.0
 - Feature: An optional `timeout` parameter can be provided to the `config` object passed to `Scrapegoat` to indicate the number of milliseconds to wait for the server to send the response before aborting the request.
 
+# 0.4.0
+- Fix: Convert `start`, `end`, and `createdAt` dates to ISO-Strings instead of Date objects to maintain consistency.
+
+    BREAKING CHANGE:
+
+    The dates were returned as a mix of ISO-Strings and Date Objects in previous versions.
+
+    To migrate your project, confirm that you are handling the dates received from scrapegoat correctly.
+- Fix: Remove `etag` trailing double quote

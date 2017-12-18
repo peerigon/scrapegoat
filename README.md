@@ -100,14 +100,14 @@ Output should be something like this:
 [
     {
         ics: '/cal.php/calendars/test/holidays/1234564316516.ics',
-        etag: 'fc46dd304e83f572688c68ab63816c8f"',
+        etag: 'fc46dd304e83f572688c68ab63816c8f',
         data: {
             title: 'Holiday: John Doe',
             uid: '56ea42c0-e4af-4ac8-8d60-d95996c9ddc5',
             location: 'Kissing, Augsburg, Germany',
             description: null,
-            start: 2017-02-16T00:00:00.000Z,
-            end: 2017-02-18T00:00:00.000Z,
+            start: '2017-02-16T00:00:00.000Z',
+            end: '2017-02-18T00:00:00.000Z',
             duration: {
                 weeks: 0,
                 days: 2,
@@ -117,7 +117,7 @@ Output should be something like this:
                 isNegative: false
             },
             type: { recurring: false, edited: false },
-            createdAt: 2017-01-24T15:33:04.000Z
+            createdAt: '2017-01-24T15:33:04.000Z'
         }
     }
 ]
