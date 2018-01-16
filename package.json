@@ -23,7 +23,8 @@
     "test-watch": "npm test -- --watch",
     "posttest": "npm run lint",
     "lint": "eslint lib test --fix",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive"
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "istanbul": "^0.4.4",
     "mocha": "^3.1.2",
     "rewire": "^2.3.1",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "standard-version": "^4.3.0"
   }
 }
