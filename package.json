@@ -3,6 +3,7 @@
   "version": "0.4.0",
   "description": "fetches calendar/event objects from a CalDav server",
   "main": "lib/index.js",
+  "engines" : { "node" : ">=8.0.0" },
   "keywords": [
     "caldav",
     "ical",
@@ -15,7 +16,6 @@
     "lodash": "^4.13.1",
     "moment": "^2.13.0",
     "request": "^2.75.0",
-    "when": "^3.7.2",
     "xml2js": "^0.4.5"
   },
   "scripts": {
