@@ -1,3 +1,31 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="1.0.0"></a>
+# 1.0.0 (2018-10-11)
+
+
+### Bug Fixes
+
+* **parser:** convert dates to ISO-Strings ([53c252f](https://github.com/peerigon/scrapegoat/commit/53c252f))
+* **parser:** remove etag trailing double quote ([9b32f4b](https://github.com/peerigon/scrapegoat/commit/9b32f4b))
+
+
+* Native promises (#26) ([44ba27d](https://github.com/peerigon/scrapegoat/commit/44ba27d)), closes [#26](https://github.com/peerigon/scrapegoat/issues/26)
+
+
+### BREAKING CHANGES
+
+* update Node version to v8.0.0
+* **parser:** The dates were returned as a mix of ISO-Strings and Date Objects
+in previous versions.
+
+To migrate your project, confirm that you are handling the dates
+received from scrapegoat correctly.
+
+
+
 # 0.1.4
 
 - Fix: .getEvents() now returns correctly formatted objects with details about passed in events
