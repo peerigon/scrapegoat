@@ -9,13 +9,13 @@ Specify basic configuration:
 
 ```javascript
 config = {
-  auth: {
-   user: 'username',
-   pass: 'password'
- },
- // example using baikal as CalDAV server
- uri: 'http://example.com/cal.php/calendars/<user name>/<calendar name>'
-}
+    auth: {
+        user: "username",
+        pass: "password"
+    },
+    // example using baikal as CalDAV server
+    uri: "http://example.com/cal.php/calendars/<user name>/<calendar name>"
+};
 ```
 
 The request will timeout if it gets no reponse from the CalDav server after 10 seconds.
@@ -24,24 +24,23 @@ An optional `timeout` parameter can be provided to override this default by pass
 ```javascript
 config = {
     auth: {
-        user: 'username',
-        pass: 'password'
+        user: "username",
+        pass: "password"
     },
     // example using baikal as CalDAV server
-    uri: 'http://example.com/cal.php/calendars/<user name>/<calendar name>',
+    uri: "http://example.com/cal.php/calendars/<user name>/<calendar name>",
     timeout: 20000
-}
+};
 ```
 
-API
----
+## API
 
 ### scrapegoat.getCtag()
 
 Fetches the ctag of a calendar. You can use the calendar's ctag to see if anything in the calendar has changed.
 
 ```javascript
-const Scrapegoat = require('scrapegoat');
+const Scrapegoat = require("scrapegoat");
 
 const scrapegoat = new Scrapegoat(config);
 
@@ -60,7 +59,7 @@ You'll get an object, which looks like this:
 
 ### scrapegoat.getEtags()
 
-Fetches the etags of a all events. You can use the events etags to see if an event has changed.
+Fetches the etags of all events. You can use the events etags to see if an event has changed.
 
 ```javascript
 scrapegoat.getEtags().then(console.log);
@@ -70,15 +69,15 @@ You'll get an array of objects, which looks like this:
 
 ```javascript
 [
-   {
-      ics: '/cal.php/calendars/test/holidays/6151613161614616.ics',
-      etag: 'fc46dd304e83f572688c68ab63816c8f'
-   },
-   {
-      ics: '/cal.php/calendars/test/holidays/6816189165131651.ics',
-      etag: '8d59671ba294af1de0e0b154a8ea64c2'
-   }
-]
+    {
+        ics: "/cal.php/calendars/test/holidays/6151613161614616.ics",
+        etag: "fc46dd304e83f572688c68ab63816c8f"
+    },
+    {
+        ics: "/cal.php/calendars/test/holidays/6816189165131651.ics",
+        etag: "8d59671ba294af1de0e0b154a8ea64c2"
+    }
+];
 ```
 
 ### scrapegoat.getEvents(events)
@@ -99,15 +98,15 @@ Output should be something like this:
 ```javascript
 [
     {
-        ics: '/cal.php/calendars/test/holidays/1234564316516.ics',
-        etag: 'fc46dd304e83f572688c68ab63816c8f',
+        ics: "/cal.php/calendars/test/holidays/1234564316516.ics",
+        etag: "fc46dd304e83f572688c68ab63816c8f",
         data: {
-            title: 'Holiday: John Doe',
-            uid: '56ea42c0-e4af-4ac8-8d60-d95996c9ddc5',
-            location: 'Kissing, Augsburg, Germany',
+            title: "Holiday: John Doe",
+            uid: "56ea42c0-e4af-4ac8-8d60-d95996c9ddc5",
+            location: "Kissing, Augsburg, Germany",
             description: null,
-            start: '2017-02-16T00:00:00.000Z',
-            end: '2017-02-18T00:00:00.000Z',
+            start: "2017-02-16T00:00:00.000Z",
+            end: "2017-02-18T00:00:00.000Z",
             duration: {
                 weeks: 0,
                 days: 2,
@@ -117,10 +116,10 @@ Output should be something like this:
                 isNegative: false
             },
             type: { recurring: false, edited: false },
-            createdAt: '2017-01-24T15:33:04.000Z'
+            createdAt: "2017-01-24T15:33:04.000Z"
         }
     }
-]
+];
 ```
 
 ### scrapegoat.getAllEvents()
@@ -137,10 +136,14 @@ The end-date must be larger that the start-date.
 Example using [moment.js](http://momentjs.com/) for date formatting:
 
 ```javascript
-const moment = require('moment');
+const moment = require("moment");
 
-const start = moment().startOf('month').format('YYYYMMDD[T]HHmmss[Z]');
-const end =  moment().endOf('month').format('YYYYMMDD[T]HHmmss[Z]');
+const start = moment()
+    .startOf("month")
+    .format("YYYYMMDD[T]HHmmss[Z]");
+const end = moment()
+    .endOf("month")
+    .format("YYYYMMDD[T]HHmmss[Z]");
 
 scrapegoat.getEventsByTime(start, end).then(console.log);
 ```
@@ -148,7 +151,7 @@ scrapegoat.getEventsByTime(start, end).then(console.log);
 The example below gets all events happening on a single day
 
 ```javascript
-const moment = require('moment');
+const moment = require("moment");
 
 const start = moment("20170216T0000").format("YYYYMMDD[T]HHmmss[Z]");
 const end = moment("20170216T2300").format("YYYYMMDD[T]HHmmss[Z]");
