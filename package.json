@@ -3,6 +3,9 @@
   "version": "0.4.0",
   "description": "fetches calendar/event objects from a CalDav server",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "keywords": [
     "caldav",
     "ical",
@@ -12,10 +15,8 @@
   "dependencies": {
     "ejs": "^2.3.1",
     "ical.js": "^1.2.2",
-    "lodash": "^4.13.1",
     "moment": "^2.13.0",
     "request": "^2.75.0",
-    "when": "^3.7.2",
     "xml2js": "^0.4.5"
   },
   "scripts": {
@@ -42,7 +43,8 @@
     "eslint-config-peerigon": "^6.0.0",
     "eslint-plugin-jsdoc": "^2.3.1",
     "istanbul": "^0.4.4",
-    "mocha": "^3.1.2",
+    "mocha": "^5.2.0",
+    "nock": "^10.0.0",
     "rewire": "^2.3.1",
     "sinon": "^1.17.6",
     "standard-version": "^4.3.0"
