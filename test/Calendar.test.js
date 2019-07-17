@@ -60,6 +60,21 @@ describe("Calendar", () => {
             });
         });
 
+        it("should return an object with information about the calendar (empty namespace)", () => {
+            const response = fixtures.getCtagResponseNoNS;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
+            const calendar = new Calendar(config);
+
+            return calendar
+            .getCtag()
+            .then((response) => {
+                expect(response).to.have.property("href", "/184565153/calendars/DEADB715-BEEF-47E1-A2B6-E1BA415C93AC/");
+                expect(response).to.have.property("name", "My Calendar");
+                expect(response).to.have.property("ctag", "FT=-@RU=1a5c7464-1234-1234-ba09-bb58b7adbac7@S=2012");
+            });
+        });
+
     });
 
     describe(".getEtags()", () => {
