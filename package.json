@@ -1,6 +1,6 @@
 {
   "name": "scrapegoat",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "fetches calendar/event objects from a CalDav server",
   "main": "lib/index.js",
   "engines": {

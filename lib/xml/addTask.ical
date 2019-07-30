@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:Scrapegoat
+BEGIN:VTODO
+<% for (var key in vtodo){ -%>
+<% if (Array.isArray(vtodo[key])) { -%>
+<% vtodo[key].forEach(function(item){ -%>
+<%- key %>:<%- item %>
+<% }); -%>
+<% }else{ -%>
+<%- key %>:<%- vtodo[key] %>
+<% } -%>
+<% } -%>
+<% if (valarm) { -%>
+BEGIN:VALARM
+TRIGGER:P0M
+ACTION:AUDIO
+REPEAT:4
+DURATION:PT5M
+END:VALARM
+<% } -%>
+END:VTODO
+END:VCALENDAR
+
