@@ -30,3 +30,5 @@ node_modules
 .idea
 .vagrant
 .idea/misc.xml
+
+.nyc_output

@@ -164,24 +164,24 @@ describe("Calendar", () => {
             ];
 
             return calendar
-            .getEvents(events)
-            .then((response) => {
-                expect(response).to.be.an("array");
-                expect(response).to.have.lengthOf(3);
-                expect(response[0]).to.have.property("ics");
-                expect(response[0]).to.have.property("etag");
-                expect(response[0]).to.have.property("data");
-                expect(response[0]).to.have.deep.property("data.title");
-                expect(response[0]).to.have.deep.property("data.uid");
-                expect(response[0]).to.have.deep.property("data.location");
-                expect(response[0]).to.have.deep.property("data.description");
-                expect(response[0]).to.have.deep.property("data.start");
-                expect(response[0]).to.have.deep.property("data.end");
-                expect(response[0]).to.have.deep.property("data.duration");
-                expect(response[0]).to.not.have.deep.property("data.duration.wrappedJSObject");
-                expect(response[0]).to.have.deep.property("data.type");
-                expect(response[0]).to.have.deep.property("data.createdAt");
-            });
+                .getEvents(events)
+                .then((response) => {
+                    expect(response).to.be.an("array");
+                    expect(response).to.have.lengthOf(3);
+                    expect(response[0]).to.have.property("ics");
+                    expect(response[0]).to.have.property("etag");
+                    expect(response[0]).to.have.property("data");
+                    expect(response[0]).to.have.nested.property("data.title");
+                    expect(response[0]).to.have.nested.property("data.uid");
+                    expect(response[0]).to.have.nested.property("data.location");
+                    expect(response[0]).to.have.nested.property("data.description");
+                    expect(response[0]).to.have.nested.property("data.start");
+                    expect(response[0]).to.have.nested.property("data.end");
+                    expect(response[0]).to.have.nested.property("data.duration");
+                    expect(response[0]).to.not.have.nested.property("data.duration.wrappedJSObject");
+                    expect(response[0]).to.have.nested.property("data.type");
+                    expect(response[0]).to.have.nested.property("data.createdAt");
+                });
         });
 
     });
