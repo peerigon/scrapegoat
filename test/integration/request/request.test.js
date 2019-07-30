@@ -1,4 +1,3 @@
-"use strict";
 
 const nock = require("nock");
 const expect = require("chai").expect;
@@ -8,12 +7,13 @@ const xml = require("../../../lib/xml");
 
 const CALENDAR_DOMAIN = "http://example.com";
 const CALENDAR_PATH = "/cal.php/calendars/user/calendar_name/";
+
 const config = {
     auth: {
         user: "username",
-        pass: "password"
+        pass: "password",
     },
-    uri: CALENDAR_DOMAIN + CALENDAR_PATH
+    uri: CALENDAR_DOMAIN + CALENDAR_PATH,
 };
 
 describe("Request", () => {
@@ -22,8 +22,8 @@ describe("Request", () => {
             reqheaders: {
                 "Content-length": xml.calendarCtag.length,
                 Depth: 0,
-                host: "example.com"
-            }
+                host: "example.com",
+            },
         })
             .intercept(CALENDAR_PATH, "PROPFIND")
             .reply(200, {});

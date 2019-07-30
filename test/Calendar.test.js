@@ -1,4 +1,3 @@
-"use strict";
 
 const expect = require("chai").expect;
 const sinon = require("sinon");
@@ -7,16 +6,16 @@ const fixtures = require("./fixtures/index");
 
 const CALENDAR_DOMAIN = "http://example.com";
 const CALENDAR_PATH = "/cal.php/calendars/user/calendar_name/";
+
 const config = {
     auth: {
         user: "username",
-        pass: "password"
+        pass: "password",
     },
-    uri: CALENDAR_DOMAIN + CALENDAR_PATH
+    uri: CALENDAR_DOMAIN + CALENDAR_PATH,
 };
 
 describe("Calendar", () => {
-
     it("should throw if config object is not passed", () => {
         const response = fixtures.getCtagResponse;
         const request = Promise.resolve(response);
@@ -26,7 +25,6 @@ describe("Calendar", () => {
     });
 
     describe(".getCtag()", () => {
-
         it("should call request with the correct arguments in the correct order", () => {
             const response = fixtures.getCtagResponse;
             const request = sinon.stub();
@@ -52,18 +50,16 @@ describe("Calendar", () => {
             const calendar = new Calendar(config);
 
             return calendar
-            .getCtag()
-            .then((response) => {
-                expect(response).to.have.property("href", CALENDAR_PATH);
-                expect(response).to.have.property("name", "Default calendar");
-                expect(response).to.have.property("ctag", "http://sabre.io/ns/sync/3");
-            });
+                .getCtag()
+                .then((response) => {
+                    expect(response).to.have.property("href", CALENDAR_PATH);
+                    expect(response).to.have.property("name", "Default calendar");
+                    expect(response).to.have.property("ctag", "http://sabre.io/ns/sync/3");
+                });
         });
-
     });
 
     describe(".getEtags()", () => {
-
         it("should call request with the correct arguments in the correct order", () => {
             const response = fixtures.getEtagsResponse;
             const request = sinon.stub();
@@ -89,19 +85,17 @@ describe("Calendar", () => {
             const calendar = new Calendar(config);
 
             return calendar
-            .getEtags()
-            .then((response) => {
-                expect(response).to.be.an("array");
-                expect(response).to.have.lengthOf(3);
-                expect(response[0]).to.have.property("ics");
-                expect(response[0]).to.have.property("etag");
-            });
+                .getEtags()
+                .then((response) => {
+                    expect(response).to.be.an("array");
+                    expect(response).to.have.lengthOf(3);
+                    expect(response[0]).to.have.property("ics");
+                    expect(response[0]).to.have.property("etag");
+                });
         });
-
     });
 
     describe(".getEvents()", () => {
-
         it("should throw if events param is not provided", () => {
             const response = fixtures.getEventsResponse;
             const request = Promise.resolve(response);
@@ -138,10 +132,11 @@ describe("Calendar", () => {
 
             const Calendar = createCalendar(request);
             const calendar = new Calendar(config);
+
             const events = [
-                { ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics" },
-                { ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics" },
-                { ics: "/cal.php/calendars/user/calendar_name/importantevent.ics" }
+                {ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics"},
+                {ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics"},
+                {ics: "/cal.php/calendars/user/calendar_name/importantevent.ics"},
             ];
 
             calendar.getEvents(events);
@@ -157,10 +152,11 @@ describe("Calendar", () => {
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
+
             const events = [
-                { ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics" },
-                { ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics" },
-                { ics: "/cal.php/calendars/user/calendar_name/importantevent.ics" }
+                {ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics"},
+                {ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics"},
+                {ics: "/cal.php/calendars/user/calendar_name/importantevent.ics"},
             ];
 
             return calendar
@@ -183,11 +179,9 @@ describe("Calendar", () => {
                     expect(response[0]).to.have.nested.property("data.createdAt");
                 });
         });
-
     });
 
     describe(".getAllEvents()", () => {
-
         it("should call request with the correct arguments in the correct order", () => {
             const response = fixtures.getAllEventsResponse;
             const request = sinon.stub();
@@ -213,20 +207,18 @@ describe("Calendar", () => {
             const calendar = new Calendar(config);
 
             return calendar
-            .getAllEvents()
-            .then((response) => {
-                expect(response).to.be.an("array");
-                expect(response).to.have.lengthOf(9);
-                expect(response[0]).to.have.property("ics");
-                expect(response[0]).to.have.property("etag");
-                expect(response[0]).to.have.property("data");
-            });
+                .getAllEvents()
+                .then((response) => {
+                    expect(response).to.be.an("array");
+                    expect(response).to.have.lengthOf(9);
+                    expect(response[0]).to.have.property("ics");
+                    expect(response[0]).to.have.property("etag");
+                    expect(response[0]).to.have.property("data");
+                });
         });
-
     });
 
     describe(".getEventsByTime()", () => {
-
         it("should call request with the correct arguments in the correct order", () => {
             const response = fixtures.getEventsByTimeResponse;
             const request = sinon.stub();
@@ -252,14 +244,14 @@ describe("Calendar", () => {
             const calendar = new Calendar(config);
 
             return calendar
-            .getEventsByTime("20140101T000000Z", "20151231T235959Z")
-            .then((response) => {
-                expect(response).to.be.an("array");
-                expect(response).to.have.lengthOf(2);
-                expect(response[0]).to.have.property("ics");
-                expect(response[0]).to.have.property("etag");
-                expect(response[0]).to.have.property("data");
-            });
+                .getEventsByTime("20140101T000000Z", "20151231T235959Z")
+                .then((response) => {
+                    expect(response).to.be.an("array");
+                    expect(response).to.have.lengthOf(2);
+                    expect(response[0]).to.have.property("ics");
+                    expect(response[0]).to.have.property("etag");
+                    expect(response[0]).to.have.property("data");
+                });
         });
 
         it("should return an array of objects with all upcoming events from today if start and end are left out", () => {
@@ -269,16 +261,14 @@ describe("Calendar", () => {
             const calendar = new Calendar(config);
 
             return calendar
-            .getEventsByTime()
-            .then((response) => {
-                expect(response).to.be.an("array");
-                expect(response).to.have.lengthOf(1);
-                expect(response[0]).to.have.property("ics");
-                expect(response[0]).to.have.property("etag");
-                expect(response[0]).to.have.property("data");
-            });
+                .getEventsByTime()
+                .then((response) => {
+                    expect(response).to.be.an("array");
+                    expect(response).to.have.lengthOf(1);
+                    expect(response[0]).to.have.property("ics");
+                    expect(response[0]).to.have.property("etag");
+                    expect(response[0]).to.have.property("data");
+                });
         });
-
     });
-
 });
