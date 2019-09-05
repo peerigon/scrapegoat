@@ -1,0 +1,12 @@
+<multistatus xmlns="DAV:">
+    <response xmlns="DAV:">
+        <href>/123456789/calendars/DEADB715-BEEF-47E1-A2B6-E1BA415C93AC/</href>
+        <propstat>
+            <prop>
+                <displayname xmlns="DAV:">My Calendar</displayname>
+                <getctag xmlns="http://calendarserver.org/ns/">FT=-@RU=1a5c7464-1234-1234-ba09-bb58b7adbac7@S=2012</getctag>
+            </prop>
+            <status>HTTP/1.1 200 OK</status>
+        </propstat>
+    </response>
+</multistatus>
