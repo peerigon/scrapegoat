@@ -27,9 +27,22 @@ config = {
         user: "username",
         pass: "password"
     },
-    // example using baikal as CalDAV server
     uri: "http://example.com/cal.php/calendars/<user name>/<calendar name>",
     timeout: 20000
+};
+```
+
+If the request fails with a `401 Unauthorized` you might need to send the authentication headers preemptive.
+This can be done by setting the `auth.sendImmediately` config property to `true`.
+
+```javascript
+config = {
+    auth: {
+        user: "username",
+        pass: "password",
+        sendImmediately: true
+    },
+    uri: "http://example.com/cal.php/calendars/<user name>/<calendar name>"
 };
 ```
 
