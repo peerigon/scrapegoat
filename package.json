@@ -23,7 +23,7 @@
     "test": "mocha --recursive -R spec --reporter dot",
     "test-watch": "npm test -- --watch",
     "posttest": "npm run lint",
-    "lint": "eslint lib test --fix",
+    "lint": "eslint lib test",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive",
     "release": "standard-version"
   },
