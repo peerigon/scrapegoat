@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/peerigon/scrapegoat/compare/v1.0.0...v1.0.1) (2019-09-06)
+
+
+### Bug Fixes
+
+* Add iCloud support ([#32](https://github.com/peerigon/scrapegoat/issues/32)) ([902b08f](https://github.com/peerigon/scrapegoat/commit/902b08f))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2018-10-11)
 
