@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<multistatus xmlns="DAV:">
+	<response>
+		<href>/123456789/calendars/D1234567-B5E0-4444-B09E-9999FF89C4AF/</href>
+		<propstat>
+			<prop>
+				<getetag xmlns="DAV:">"C=2325@U=c0e471b8-9d6a-4e13-80e3-2e89dab8f4c4"</getetag>
+			</prop>
+			<status>HTTP/1.1 200 OK</status>
+		</propstat>
+	</response>
+	<response>
+		<href>/123456789/calendars/D1234567-B5E0-4444-B09E-9999FF89C4AF/A47C9E63-DC03-42B5-9DF4-2F4AA324EFEF.ics</href>
+		<propstat>
+			<prop>
+				<getetag xmlns="DAV:">"C=2329@U=c0e471b8-9d6a-4e13-80e3-2e89dab8f4c4"</getetag>
+			</prop>
+			<status>HTTP/1.1 200 OK</status>
+		</propstat>
+	</response>
+	<response>
+		<href>/123456789/calendars/D1234567-B5E0-4444-B09E-9999FF89C4AF/C047F711-544B-4752-BDFF-BF1230E2DD39.ics</href>
+		<propstat>
+			<prop>
+				<getetag xmlns="DAV:">"C=2328@U=c0e471b8-9d6a-4e13-80e3-2e89dab8f4c4"</getetag>
+			</prop>
+			<status>HTTP/1.1 200 OK</status>
+		</propstat>
+	</response>
+</multistatus>
