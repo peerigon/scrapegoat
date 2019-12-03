@@ -307,6 +307,40 @@ describe("Calendar", () => {
             });
         });
 
+        it("should return an array of objects with all events that occur between start and end dates including recurring", () => {
+            const response = fixtures.getRecurringEventsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
+            const calendar = new Calendar(config);
+
+            return calendar
+            .getEventsByTime("20170201T000000Z", "20180201T000000Z")
+            .then((response) => {
+                expect(response).to.be.an("array");
+                expect(response).to.have.lengthOf(51);
+                expect(response[0]).to.have.property("ics");
+                expect(response[0]).to.have.property("etag");
+                expect(response[0]).to.have.property("data");
+            });
+        });
+
+        it("should return an array of objects with all events that occur between start and end dates including recurring open ended", () => {
+            const response = fixtures.getRecurringEventsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
+            const calendar = new Calendar(config);
+
+            return calendar
+            .getEventsByTime("20170201T000000Z")
+            .then((response) => {
+                expect(response).to.be.an("array");
+                expect(response).to.have.lengthOf(10);
+                expect(response[0]).to.have.property("ics");
+                expect(response[0]).to.have.property("etag");
+                expect(response[0]).to.have.property("data");
+            });
+        });
+
         it("should return an array of objects with all upcoming events from today if start and end are left out", () => {
             const response = fixtures.getFutureEventsResponse;
             const request = Promise.resolve(response);

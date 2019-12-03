@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright 2019 Adobe. All rights reserved.
+  ~ This file is licensed to you under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License. You may obtain a copy
+  ~ of the License at http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under
+  ~ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+  ~ OF ANY KIND, either express or implied. See the License for the specific language
+  ~ governing permissions and limitations under the License.
+  -->
+
+<d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:cal="urn:ietf:
+params:xml:ns:caldav" xmlns:cs="http://calendarserver.org/ns/" xmlns:card="urn:ietf
+:params:xml:ns:carddav">
+ <d:response>
+  <d:href>/cal.php/calendars/antosan/default/event5.ics</d:href>
+  <d:propstat>
+   <d:prop>
+    <cal:calendar-data>BEGIN:VCALENDAR
+PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN
+VERSION:2.0
+BEGIN:VEVENT
+CREATED:20170118T143300Z
+LAST-MODIFIED:20170125T142648Z
+DTSTAMP:20170125T142648Z
+UID:lcghvo9rqntv7n18s72dbt7fds@google.com
+SUMMARY:Repeating Event on Wednesdays
+STATUS:CONFIRMED
+RRULE:FREQ=WEEKLY;COUNT=100;BYDAY=WE
+EXDATE;VALUE=DATE:20170222
+EXDATE;VALUE=DATE:20170208
+DTSTART;VALUE=DATE:20170201
+DTEND;VALUE=DATE:20170202
+DESCRIPTION:#Repeating
+LOCATION:Am Silbermannpark\, 86161 Augsburg\, Germany
+SEQUENCE:0
+TRANSP:TRANSPARENT
+X-MOZ-GENERATION:2
+END:VEVENT
+END:VCALENDAR
+</cal:calendar-data>
+    <d:getetag>&quot;049d0b4228f3c4aaf8ff097a4bebc166&quot;</d:getetag>
+   </d:prop>
+   <d:status>HTTP/1.1 200 OK</d:status>
+  </d:propstat>
+ </d:response>
+</d:multistatus>

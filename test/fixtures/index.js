@@ -10,6 +10,7 @@ const fixtures = {
     getEtagsNoNamespaceResponse: fs.readFileSync(path.join(__dirname, "/etagsNoNamespace.response.xml"), "utf8"),
     getEventsResponse: fs.readFileSync(path.join(__dirname, "/events.response.xml"), "utf8"),
     getAllEventsResponse: fs.readFileSync(path.join(__dirname, "/eventsAll.response.xml"), "utf8"),
+    getRecurringEventsResponse: fs.readFileSync(path.join(__dirname, "/eventsAllRecurring.response.xml"), "utf8"),
     getAllEventsNoNamespaceResponse: fs.readFileSync(path.join(__dirname, "/eventsAllNoNamespace.response.xml"), "utf8"),
     getEventsByTimeResponse: fs.readFileSync(path.join(__dirname, "/eventsByTime.response.xml"), "utf8"),
     getFutureEventsResponse: fs.readFileSync(path.join(__dirname, "/eventsFuture.response.xml"), "utf8")
