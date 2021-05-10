@@ -1,4 +1,3 @@
-"use strict";
 
 const fs = require("fs");
 const path = require("path");
@@ -12,7 +11,7 @@ const fixtures = {
     getAllEventsResponse: fs.readFileSync(path.join(__dirname, "/eventsAll.response.xml"), "utf8"),
     getAllEventsNoNamespaceResponse: fs.readFileSync(path.join(__dirname, "/eventsAllNoNamespace.response.xml"), "utf8"),
     getEventsByTimeResponse: fs.readFileSync(path.join(__dirname, "/eventsByTime.response.xml"), "utf8"),
-    getFutureEventsResponse: fs.readFileSync(path.join(__dirname, "/eventsFuture.response.xml"), "utf8")
+    getFutureEventsResponse: fs.readFileSync(path.join(__dirname, "/eventsFuture.response.xml"), "utf8"),
 };
 
 module.exports = fixtures;
