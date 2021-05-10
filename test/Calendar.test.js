@@ -1,4 +1,3 @@
-
 const expect = require("chai").expect;
 const sinon = require("sinon");
 const createCalendar = require("../lib/Calendar");
@@ -163,9 +162,9 @@ describe("Calendar", () => {
             const Calendar = createCalendar(request);
             const calendar = new Calendar(config);
             const events = [
-                {ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics"},
-                {ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics"},
-                {ics: "/cal.php/calendars/user/calendar_name/importantevent.ics"},
+                { ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics" },
+                { ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics" },
+                { ics: "/cal.php/calendars/user/calendar_name/importantevent.ics" },
             ];
 
             calendar.getEvents(events);
@@ -182,9 +181,9 @@ describe("Calendar", () => {
             const Calendar = createCalendar(() => request);
             const calendar = new Calendar(config);
             const events = [
-                {ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics"},
-                {ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics"},
-                {ics: "/cal.php/calendars/user/calendar_name/importantevent.ics"},
+                { ics: "/cal.php/calendars/user/calendar_name/nodeschool-augsburg.ics" },
+                { ics: "/cal.php/calendars/user/calendar_name/sampleevent.ics" },
+                { ics: "/cal.php/calendars/user/calendar_name/importantevent.ics" },
             ];
 
             return calendar

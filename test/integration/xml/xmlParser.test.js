@@ -1,4 +1,3 @@
-
 const expect = require("chai").expect;
 const xmlParser = require("../../../lib/xml/parser");
 

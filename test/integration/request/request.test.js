@@ -1,4 +1,3 @@
-
 const nock = require("nock");
 const expect = require("chai").expect;
 const createCalendar = require("../../../lib/Calendar");
@@ -16,7 +15,7 @@ const config = {
 };
 
 describe("Request", () => {
-    it("should call request with the correct headers", done => {
+    it("should call request with the correct headers", () => {
         const calendarRequest = nock(CALENDAR_DOMAIN, {
             reqheaders: {
                 "Content-length": xml.calendarCtag.length,
@@ -30,10 +29,9 @@ describe("Request", () => {
         const Calendar = createCalendar(request);
         const calendar = new Calendar(config);
 
-        calendar.getCtag().catch(() => {
+        return calendar.getCtag().catch(() => {
             // There will be an error because of the code in request we arent testing for
             expect(calendarRequest.isDone()).to.equal(true);
-            done();
         });
     });
 });
