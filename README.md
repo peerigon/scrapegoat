@@ -32,18 +32,6 @@ config = {
 };
 ```
 
-If the request fails with a `401 Unauthorized` you might need to send the authentication headers preemptive.
-This can be done by setting the `headers.authorization` config property which will be used instead of `auth`.
-
-```javascript
-config = {
-    uri: "http://example.com/cal.php/calendars/<user name>/<calendar name>",
-    headers: {
-        authorization: 'Bearer token',
-    }
-};
-```
-
 ## API
 
 ### scrapegoat.getCtag()
