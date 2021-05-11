@@ -117,7 +117,7 @@ describe("Calendar", () => {
                 .getEtags()
                 .then((response) => {
                     expect(response).to.be.an("array");
-                    expect(response).to.have.lengthOf(3);
+                    expect(response).to.have.lengthOf(2);
                     expect(response[0]).to.have.property("ics");
                     expect(response[0]).to.have.property("etag");
                 });
