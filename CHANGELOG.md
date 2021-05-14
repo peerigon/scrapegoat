@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/peerigon/scrapegoat/compare/v1.0.1...v2.0.0) (2021-05-14)
+
+
+### Chores
+
+* **core:** update dependencies, introduce scriptlint ([#38](https://github.com/peerigon/scrapegoat/issues/38)) ([5aac540](https://github.com/peerigon/scrapegoat/commit/5aac540))
+
+
+### Features
+
+* Switch from deprecated request to fetch + bug fix ([#47](https://github.com/peerigon/scrapegoat/issues/47)) ([b14dd50](https://github.com/peerigon/scrapegoat/commit/b14dd50))
+
+
+### BREAKING CHANGES
+
+* **core:** update Node version to v10.0.0
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/peerigon/scrapegoat/compare/v1.0.0...v1.0.1) (2019-09-06)
 
