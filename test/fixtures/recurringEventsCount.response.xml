@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<multistatus xmlns="DAV:">
+    <response>
+        <href>/16292435102/calendars/92C07D77-CECD-44C6-8239-197FBFFFECC8/D7A8414B-A91A-4696-B8BC-A2EFD286B68A.ics</href>
+        <propstat>
+            <prop>
+                <calendar-data xmlns="urn:ietf:params:xml:ns:caldav"><![CDATA[BEGIN:VCALENDAR
+X-WR-CALNAME:New Event
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:-//caldav.icloud.com//CALDAVJ 2108B588//EN
+BEGIN:VEVENT
+DTSTAMP:20210520T065145Z
+SUMMARY:New Event
+LOCATION:
+TZID:US/Pacific
+SEQUENCE:0
+UID:D7A8414B-A91A-4696-B8BC-A2EFD286B68A
+CREATED:20210520T065145Z
+DTSTART;VALUE=DATE:20210503
+DTEND;VALUE=DATE:20210504
+RRULE:FREQ=WEEKLY;WKST=MO;COUNT=50;INTERVAL=1;BYDAY=MO,TU,WE,TH,FR
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
+]]></calendar-data>
+                <getetag xmlns="DAV:">"kowjd8ik"</getetag>
+            </prop>
+            <status>HTTP/1.1 200 OK</status>
+        </propstat>
+    </response>
+</multistatus>

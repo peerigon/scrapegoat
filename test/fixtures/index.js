@@ -12,6 +12,9 @@ const fixtures = {
     getAllEventsNoNamespaceResponse: fs.readFileSync(path.join(__dirname, "/eventsAllNoNamespace.response.xml"), "utf8"),
     getEventsByTimeResponse: fs.readFileSync(path.join(__dirname, "/eventsByTime.response.xml"), "utf8"),
     getFutureEventsResponse: fs.readFileSync(path.join(__dirname, "/eventsFuture.response.xml"), "utf8"),
+    getRecurringEventsCountResponse: fs.readFileSync(path.join(__dirname, "/recurringEventsCount.response.xml"), "utf8"),
+    getRecurringEventsUntilResponse: fs.readFileSync(path.join(__dirname, "/recurringEventsUntil.response.xml"), "utf8"),
+    getRecurringEventsEndNeverResponse: fs.readFileSync(path.join(__dirname, "/recurringEventsEndNever.response.xml"), "utf8"),
 };
 
 module.exports = fixtures;

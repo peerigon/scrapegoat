@@ -314,5 +314,113 @@ describe("Calendar", () => {
                     expect(response[0]).to.have.property("data");
                 });
         });
+
+        describe("recurring events with count", () => {
+            it("should expand upto end date if provided", () => {
+                const response = fixtures.getRecurringEventsCountResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z", "20210630T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(22);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand all upcoming events if end date is not provided", () => {
+                const response = fixtures.getRecurringEventsCountResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(29);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+        });
+
+        describe("recurring events with until date", () => {
+            it("should expand upto end date if provided", () => {
+                const response = fixtures.getRecurringEventsUntilResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z", "20210630T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(22);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand all upcoming events if end date is not provided", () => {
+                const response = fixtures.getRecurringEventsUntilResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(44);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+        });
+
+        describe("recurring events that never end", () => {
+            it("should expand upto end date if provided", () => {
+                const response = fixtures.getRecurringEventsEndNeverResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z", "20210630T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(22);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand only 10 upcoming events if end date is not provided", () => {
+                const response = fixtures.getRecurringEventsEndNeverResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(10);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+        });
     });
 });
