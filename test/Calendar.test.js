@@ -11,6 +11,9 @@ const config = {
         pass: "password",
     },
     uri: CALENDAR_DOMAIN + CALENDAR_PATH,
+    events: {
+        maxExpandCount: 10,
+    },
 };
 
 describe("Calendar", () => {
@@ -20,6 +23,75 @@ describe("Calendar", () => {
         const Calendar = createCalendar(() => request);
 
         expect(() => new Calendar()).to.throw(Error, /Missing config object/);
+    });
+
+    it("should throw if config.events object is not passed", () => {
+        const response = fixtures.getCtagResponse;
+        const request = Promise.resolve(response);
+        const Calendar = createCalendar(() => request);
+
+        const invalidConfig = {
+            auth: config.auth,
+            uri: config.uri,
+        };
+
+        expect(() => new Calendar(invalidConfig)).to.throw(Error, /Missing config\.events\.maxExpandCount/);
+    });
+
+    it("should throw if config.events.maxExpandCount is not passed", () => {
+        const response = fixtures.getCtagResponse;
+        const request = Promise.resolve(response);
+        const Calendar = createCalendar(() => request);
+
+        const invalidConfig = {
+            auth: config.auth,
+            uri: config.uri,
+            events: {},
+        };
+
+        expect(() => new Calendar(invalidConfig)).to.throw(Error, /Missing config\.events\.maxExpandCount/);
+    });
+
+    it("should throw if config.events.maxExpandCount is not a number", () => {
+        const response = fixtures.getCtagResponse;
+        const request = Promise.resolve(response);
+        const Calendar = createCalendar(() => request);
+
+        const invalidConfig = {
+            auth: config.auth,
+            uri: config.uri,
+            events: { maxExpandCount: "10" },
+        };
+
+        expect(() => new Calendar(invalidConfig)).to.throw(TypeError, /config\.events\.maxExpandCount should be a positive number or Infinity/);
+    });
+
+    it("should throw if config.events.maxExpandCount is zero", () => {
+        const response = fixtures.getCtagResponse;
+        const request = Promise.resolve(response);
+        const Calendar = createCalendar(() => request);
+
+        const invalidConfig = {
+            auth: config.auth,
+            uri: config.uri,
+            events: { maxExpandCount: 0 },
+        };
+
+        expect(() => new Calendar(invalidConfig)).to.throw(TypeError, /config\.events\.maxExpandCount should be a positive number or Infinity/);
+    });
+
+    it("should throw if config.events.maxExpandCount is a number less than zero", () => {
+        const response = fixtures.getCtagResponse;
+        const request = Promise.resolve(response);
+        const Calendar = createCalendar(() => request);
+
+        const invalidConfig = {
+            auth: config.auth,
+            uri: config.uri,
+            events: { maxExpandCount: -10 },
+        };
+
+        expect(() => new Calendar(invalidConfig)).to.throw(TypeError, /config\.events\.maxExpandCount should be a positive number or Infinity/);
     });
 
     describe(".getCtag()", () => {
@@ -41,7 +113,7 @@ describe("Calendar", () => {
             expect(request.firstCall.args[2]).to.equal(0);
         });
 
-        it("should return an object with information about the calendar", () => {
+        it("should return an object with information about the calendar", async () => {
             const response = fixtures.getCtagResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -56,7 +128,7 @@ describe("Calendar", () => {
                 });
         });
 
-        it("should return an object with information about the calendar (no namespace)", () => {
+        it("should return an object with information about the calendar (no namespace)", async () => {
             const response = fixtures.getCtagNoNamespaceResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -91,7 +163,7 @@ describe("Calendar", () => {
             expect(request.firstCall.args[2]).to.equal(1);
         });
 
-        it("should return an array of object with etags of all events", () => {
+        it("should return an array of object with etags of all events", async () => {
             const response = fixtures.getEtagsResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -107,7 +179,7 @@ describe("Calendar", () => {
                 });
         });
 
-        it("should return an array of object with etags of all events (no namespace)", () => {
+        it("should return an array of object with etags of all events (no namespace)", async () => {
             const response = fixtures.getEtagsNoNamespaceResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -175,7 +247,7 @@ describe("Calendar", () => {
             expect(request.firstCall.args[2]).to.equal(1);
         });
 
-        it("should return an array of objects with the passed events", () => {
+        it("should return an array of objects with the passed events", async () => {
             const response = fixtures.getEventsResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -227,7 +299,7 @@ describe("Calendar", () => {
             expect(request.firstCall.args[2]).to.equal(1);
         });
 
-        it("should return an array of objects with all events in the calendar", () => {
+        it("should return an array of objects with all events in the calendar", async () => {
             const response = fixtures.getAllEventsResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -244,7 +316,7 @@ describe("Calendar", () => {
                 });
         });
 
-        it("should return an array of objects with all events in the calendar (no namespace)", () => {
+        it("should return an array of objects with all events in the calendar (no namespace)", async () => {
             const response = fixtures.getAllEventsNoNamespaceResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -255,6 +327,30 @@ describe("Calendar", () => {
                 .then((response) => {
                     expect(response).to.be.an("array");
                     expect(response).to.have.lengthOf(2);
+                    expect(response[0]).to.have.property("ics");
+                    expect(response[0]).to.have.property("etag");
+                    expect(response[0]).to.have.property("data");
+                });
+        });
+
+        it("should return an array of objects with all events in the calendar, respecting maxExpandCount", async () => {
+            const response = fixtures.getAllEventsResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
+            const newConfig = {
+                ...config,
+                events: {
+                    ...config.events,
+                    maxExpandCount: 3,
+                },
+            };
+            const calendar = new Calendar(newConfig);
+
+            return calendar
+                .getAllEvents()
+                .then((response) => {
+                    expect(response).to.be.an("array");
+                    expect(response).to.have.lengthOf(7);
                     expect(response[0]).to.have.property("ics");
                     expect(response[0]).to.have.property("etag");
                     expect(response[0]).to.have.property("data");
@@ -281,7 +377,16 @@ describe("Calendar", () => {
             expect(request.firstCall.args[2]).to.equal(1);
         });
 
-        it("should return an array of objects with all events that occur between start and end dates", () => {
+        it("should throw error if end date is smaller than start date", () => {
+            const response = fixtures.getEventsByTimeResponse;
+            const request = Promise.resolve(response);
+            const Calendar = createCalendar(() => request);
+            const calendar = new Calendar(config);
+
+            expect(() => calendar.getEventsByTime("20160101T000000Z", "20151231T235959Z")).to.throw(Error, /End date must be after start date/);
+        });
+
+        it("should return an array of objects with all events that occur between start and end dates", async () => {
             const response = fixtures.getEventsByTimeResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -298,7 +403,7 @@ describe("Calendar", () => {
                 });
         });
 
-        it("should return an array of objects with all upcoming events from today if start and end are left out", () => {
+        it("should return an array of objects with all upcoming events from today if start and end are left out", async () => {
             const response = fixtures.getFutureEventsResponse;
             const request = Promise.resolve(response);
             const Calendar = createCalendar(() => request);
@@ -313,6 +418,241 @@ describe("Calendar", () => {
                     expect(response[0]).to.have.property("etag");
                     expect(response[0]).to.have.property("data");
                 });
+        });
+
+        describe("recurring events with count", () => {
+            it("should expand upto end date if provided", async () => {
+                const response = fixtures.getRecurringEventsCountResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z", "20210630T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(10);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand all upcoming events if end date is not provided", async () => {
+                const response = fixtures.getRecurringEventsCountResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(10);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand upto end date if provided - maxExpandCount: Infinity", async () => {
+                const response = fixtures.getRecurringEventsCountResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const newConfig = {
+                    ...config,
+                    events: {
+                        ...config.events,
+                        maxExpandCount: Infinity,
+                    },
+                };
+                const calendar = new Calendar(newConfig);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z", "20210630T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(22);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand all upcoming events if end date is not provided - maxExpandCount: Infinity", async () => {
+                const response = fixtures.getRecurringEventsCountResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const newConfig = {
+                    ...config,
+                    events: {
+                        ...config.events,
+                        maxExpandCount: Infinity,
+                    },
+                };
+                const calendar = new Calendar(newConfig);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(29);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+        });
+
+        describe("recurring events with until date", () => {
+            it("should expand upto end date if provided", async () => {
+                const response = fixtures.getRecurringEventsUntilResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z", "20210630T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(10);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand all upcoming events if end date is not provided", async () => {
+                const response = fixtures.getRecurringEventsUntilResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(10);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand upto end date if provided - maxExpandCount: Infinity", async () => {
+                const response = fixtures.getRecurringEventsUntilResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const newConfig = {
+                    ...config,
+                    events: {
+                        ...config.events,
+                        maxExpandCount: Infinity,
+                    },
+                };
+                const calendar = new Calendar(newConfig);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z", "20210630T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(22);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand all upcoming events if end date is not provided - maxExpandCount: Infinity", async () => {
+                const response = fixtures.getRecurringEventsUntilResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const newConfig = {
+                    ...config,
+                    events: {
+                        ...config.events,
+                        maxExpandCount: Infinity,
+                    },
+                };
+                const calendar = new Calendar(newConfig);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(44);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+        });
+
+        describe("recurring events that never end", () => {
+            it("should expand upto end date if provided", async () => {
+                const response = fixtures.getRecurringEventsEndNeverResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const calendar = new Calendar(config);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z", "20210630T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(10);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand upto end date if provided - maxExpandCount: Infinity", async () => {
+                const response = fixtures.getRecurringEventsEndNeverResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const newConfig = {
+                    ...config,
+                    events: {
+                        ...config.events,
+                        maxExpandCount: Infinity,
+                    },
+                };
+                const calendar = new Calendar(newConfig);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z", "20210630T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(22);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
+
+            it("should expand only `maxExpandCount` upcoming events if end date is not provided", async () => {
+                const response = fixtures.getRecurringEventsEndNeverResponse;
+                const request = Promise.resolve(response);
+                const Calendar = createCalendar(() => request);
+                const newConfig = {
+                    ...config,
+                    events: {
+                        ...config.events,
+                        maxExpandCount: 100,
+                    },
+                };
+                const calendar = new Calendar(newConfig);
+
+                return calendar
+                    .getEventsByTime("20210601T000000Z")
+                    .then((response) => {
+                        expect(response).to.be.an("array");
+                        expect(response).to.have.lengthOf(100);
+                        expect(response[0]).to.have.property("ics");
+                        expect(response[0]).to.have.property("etag");
+                        expect(response[0]).to.have.property("data");
+                    });
+            });
         });
     });
 });
