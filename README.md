@@ -11,24 +11,34 @@ Specify basic configuration:
 config = {
     auth: {
         user: "username",
-        pass: "password"
+        pass: "password",
     },
     // example using baikal as CalDAV server
-    uri: "http://example.com/cal.php/calendars/<user name>/<calendar name>"
+    uri: "http://example.com/cal.php/calendars/<user name>/<calendar name>",
+    events: {
+        maxExpandCount: 10,
+    },
 };
 ```
 
-The request will timeout if it gets no reponse from the CalDav server after 10 seconds.
+`config.events.maxExpandCount` is a required parameter that receives a positive number which defines how many upcoming
+occurrences of each recurring event should be expanded. This prevents the possibility of an almost infinite loop.
+However, if you don't care about running into an infinite loop, you can set it to `Infinity`.
+
+The request will timeout if it gets no response from the CalDav server after 10 seconds.
 An optional `timeout` parameter can be provided to override this default by passing an integer containing the number of milliseconds to wait for the server to send the response before aborting the request.
 
 ```javascript
 config = {
     auth: {
         user: "username",
-        pass: "password"
+        pass: "password",
     },
     uri: "http://example.com/cal.php/calendars/<user name>/<calendar name>",
-    timeout: 20000
+    events: {
+        maxExpandCount: 10,
+    },
+    timeout: 20000,
 };
 ```
 
@@ -70,12 +80,12 @@ You'll get an array of objects, which looks like this:
 [
     {
         ics: "/cal.php/calendars/test/holidays/6151613161614616.ics",
-        etag: "fc46dd304e83f572688c68ab63816c8f"
+        etag: "fc46dd304e83f572688c68ab63816c8f",
     },
     {
         ics: "/cal.php/calendars/test/holidays/6816189165131651.ics",
-        etag: "8d59671ba294af1de0e0b154a8ea64c2"
-    }
+        etag: "8d59671ba294af1de0e0b154a8ea64c2",
+    },
 ];
 ```
 
@@ -112,12 +122,12 @@ Output should be something like this:
                 hours: 0,
                 minutes: 0,
                 seconds: 0,
-                isNegative: false
+                isNegative: false,
             },
             type: { recurring: false, edited: false },
-            createdAt: "2017-01-24T15:33:04.000Z"
-        }
-    }
+            createdAt: "2017-01-24T15:33:04.000Z",
+        },
+    },
 ];
 ```
 
@@ -132,17 +142,18 @@ If you leave `start` and `end` out, you'll get all upcoming events from today.
 Passing only one date as a parameter returns all upcoming events from that date.
 The end-date must be larger that the start-date.
 
+NOTE: The provided `config.events.maxExpandCount` config property takes precedence over the `end` date when expanding
+recurring events. The event expansion will be terminated once `config.events.maxExpandCount` is reached. If you wish to
+expand all events until the end date you can set `config.events.maxExpandCount` to a really high number, like `3650`
+(this would expand an event that recurs every day for 10 years) or set it to `Infinity`.
+
 Example using [moment.js](http://momentjs.com/) for date formatting:
 
 ```javascript
 const moment = require("moment");
 
-const start = moment()
-    .startOf("month")
-    .format("YYYYMMDD[T]HHmmss[Z]");
-const end = moment()
-    .endOf("month")
-    .format("YYYYMMDD[T]HHmmss[Z]");
+const start = moment().startOf("month").format("YYYYMMDD[T]HHmmss[Z]");
+const end = moment().endOf("month").format("YYYYMMDD[T]HHmmss[Z]");
 
 scrapegoat.getEventsByTime(start, end).then(console.log);
 ```
